@@ -1,9 +1,6 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-    //   "paths": {
-    //     "@components/*": ["./ClientApp/*"]
-    //   }
-    },
-    
-  }
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+}
