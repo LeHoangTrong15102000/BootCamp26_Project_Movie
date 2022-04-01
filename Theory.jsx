@@ -1,0 +1,1 @@
+// Tất cả các cấu hình để built ra giao diện đã được react tích hợp trong react-script

@@ -1,6 +1,7 @@
 import { createStore, compose , applyMiddleware} from 'redux'
 import ReduxThunk from 'redux-thunk'
 import reducer from './reducer'
+import homeMovie from '@reduxjs/toolkit'
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

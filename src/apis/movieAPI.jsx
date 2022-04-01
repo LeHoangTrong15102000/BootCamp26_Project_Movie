@@ -3,7 +3,7 @@
 import axios from './axiosClient'
 
 
-export const getMovieShowing = (name) => {
+export const getMoviesShowing = (name) => {
     // Nên viêt thoe cách thứ 2 để có thể dễ quan sát hơn là viết nối chuỗi
     return axios.get('QuanLyPhim/LayDanhSachPhim', {
         params: {
@@ -12,7 +12,7 @@ export const getMovieShowing = (name) => {
     })
 }
 
-export const getMovieDetails = () => {
+export const getMoviesDetails = () => {
     return axios.get("QuanLyPhim/LayThongTinPhim", {
         params: {
             maPhim: 'adsasd'
