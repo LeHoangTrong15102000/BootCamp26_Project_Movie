@@ -2,7 +2,7 @@
 
 import axios from './axiosClient';
 
-export const getMoviesShowing = (name) => {
+export const getMoviesShowing = () => {
   // Nên viêt thoe cách thứ 2 để có thể dễ quan sát hơn là viết nối chuỗi
   return axios.get('QuanLyPhim/LayDanhSachPhim', {
     params: {
@@ -11,10 +11,10 @@ export const getMoviesShowing = (name) => {
   });
 };
 
-export const getMoviesDetails = (name) => {
+export const getMoviesDetails = (movieId) => {
   return axios.get('QuanLyPhim/LayThongTinPhim', {
     params: {
-      maPhim: '',
+      maPhim: movieId,
     },
   });
 };
