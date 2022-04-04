@@ -11,10 +11,10 @@ export const getMoviesShowing = (name) => {
   });
 };
 
-export const getMoviesDetails = () => {
+export const getMoviesDetails = (name) => {
   return axios.get('QuanLyPhim/LayThongTinPhim', {
     params: {
-      maPhim: 'GP02',
+      maPhim: '',
     },
   });
 };

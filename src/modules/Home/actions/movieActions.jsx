@@ -1,10 +1,10 @@
-import * as actionTypes from '../constants/MovieConstants';
+import * as actionTypes from '../constants/movieConstants';
 import { getMoviesShowing } from 'apis/movieAPI';
 
 export const getMovieShowing = () => {
   // Đây là asyncurush action
 
-  // Thường CRUD sẽ viết với format bên dưới
+  // Thường CRUD sẽ viết với format bên dưới, các phương thức gọi API trong action này
   return async (dispatch) => {
     // Dispatch lên để gọi về API chứa danh sach phim
     dispatch({
@@ -18,7 +18,7 @@ export const getMovieShowing = () => {
         type: actionTypes.GET_MOVIES_SHOWING_SUCCESS,
         // thường trong công ty mọi người sẽ dùng chung một cái form khi mà gọi API, nên hãy tập quen đần với cách này
         payload: {
-          data, // thành công thì là action.payload.data
+          data: data.content, // thành công thì là action.payload.data, phải lấy ra cái content mà backEnd trả về thì mới được
         },
       });
     } catch (error) {
