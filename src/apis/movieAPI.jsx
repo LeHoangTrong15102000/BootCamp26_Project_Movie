@@ -14,7 +14,7 @@ export const getMoviesShowing = (name) => {
 export const getMoviesDetails = () => {
   return axios.get('QuanLyPhim/LayThongTinPhim', {
     params: {
-      maPhim: 'adsasd',
+      maPhim: 'GP02',
     },
   });
 };
