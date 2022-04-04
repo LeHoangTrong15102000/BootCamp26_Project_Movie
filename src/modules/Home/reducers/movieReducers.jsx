@@ -7,7 +7,7 @@ const initialState = {
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
-const movieReducers =  (state = initialState, { type, payload }) => {
+const movieReducers = (state = initialState, { type, payload }) => {
   switch (type) {
     // Reducer của thằng getMovieShowing
     // Return không có 2 dấu ngoặc vẫn được
@@ -26,4 +26,4 @@ const movieReducers =  (state = initialState, { type, payload }) => {
   }
 };
 
-export default movieReducers
+export default movieReducers;

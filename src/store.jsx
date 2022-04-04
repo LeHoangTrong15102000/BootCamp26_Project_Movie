@@ -1,17 +1,16 @@
-import { createStore, compose , applyMiddleware} from 'redux'
-import ReduxThunk from 'redux-thunk'
-import reducer from './reducer'
-import homeMovie from '@reduxjs/toolkit'
+import { createStore, compose, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import reducer from './reducer';
+// import homeMovie from '@reduxjs/toolkit'
 
 const composeEnhancers =
-  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
+const middlewares = applyMiddleware(ReduxThunk);
+const enhancer = composeEnhancers(middlewares);
 
-const middlewares = applyMiddleware(ReduxThunk)
-const enhancer = composeEnhancers(middlewares)
+const store = createStore(reducer, enhancer);
 
-const store = createStore(reducer , enhancer)
-
-export default store
+export default store;
