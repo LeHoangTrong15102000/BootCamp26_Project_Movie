@@ -10,8 +10,8 @@ export const getMovieShowing = () => {
     dispatch({
       type: actionTypes.GET_MOVIES_SHOWING_REQUEST,
     });
-    const { data } = await getMoviesShowing();
     try {
+      const { data } = await getMoviesShowing();
       // lấy về data của API đó
       // Sau khi lấy về data rồi thì dispatch lên nếu thành công
       dispatch({
