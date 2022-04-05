@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMovieShowing } from '../actions/movieActions';
 // import homeMovie from '../reducers/movieReducers'
@@ -28,10 +28,10 @@ const MovieShowing = () => {
     <div>
       <h3>MovieShowing</h3>
       {data.map((movie, index) => (
-        <>
+        <Fragment key={index}>
           <p>{movie.tenPhim}</p>
           <button>Details</button>
-        </>
+        </Fragment>
       ))}
     </div>
   );

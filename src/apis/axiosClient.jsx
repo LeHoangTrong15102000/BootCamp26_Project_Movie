@@ -28,7 +28,7 @@ const axiosClient = axios.create({
 axiosClient.interceptors.response.use(
   (response) => {
     // response.data là format của axios, sau đó
-    return response;
+    return response; // Chỉ cần trả về response nếu đã trả về response.data.content thì bên gọi data không cần phải bốc tách nữa
   },
   (error) => {
     // format lại error trả ra bên ngoài
