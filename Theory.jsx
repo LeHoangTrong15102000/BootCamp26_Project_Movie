@@ -6,4 +6,8 @@
  *  - Redux toolkit nó sẽ giúp mình 2 điều
  *      + Việc cấu hình Redux store nó sẽ dễ dàng hơn rất là nhiều
  *  - Bên trong redux-toolkit sẽ có thầng createSlice, createSlice sẽ có 3 thành phần "name-initialState-reducers" -> thì chỉ cần thằng createSlice nó đã kết hợp cả 3 thằng: constants, actions , reducers
+ *
+ * - Do trong redux toolkit nó đã chứa redux thunk rồi, nên giờ muốn dispatch cái hàm lên thì chỉ cần rồi phương thức createAsyncThunk trong redux toolkit là được.
+ *      + Nó sẽ giúp chúng ta tự động generate ra 3 action
+ *
  */
