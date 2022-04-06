@@ -12,26 +12,39 @@ const initialState = {
 export const getShowing = createAsyncThunk(
   'home/movie/getShowing', // tên actions, tên actions type sẽ tư động nối lại cho chúng ta
   // Lần đầu tiên nó sẽ tự động Action Request, thành công thì nó se tự động success
-  async (_, { rejectWithValue }) => {
-    // Tham số thứ 2 là payload creator là một cái hàm, thì trong đây dùng để gọi API
-    // function return về data
-    // async này không cần phải try...catch nó sẽ tự trả về cho chúng ta, nếu thành công thì trả về data còn lỗi thì trả về lỗi
-    try {
-      const { data } = await getMoviesShowing();
-      /**
-       * // Bốc tách thẳng data từ thằng getMoviesShowing lấy về luôn
-       * // Mặc định thằng axios trả về một cái object {statucode, header,..} trong đó có cái key là data nữa
-       */
-      // Nếu mà return data -> thì nó sẽ hiểu payload là data còn nếu return {data } thì nó sẽ hiểu payload có cái key là data
-      // Lí do mà mình để nó trong một cái object là có thể mình sẽ trả nó về nhiều cái key
-      return { data: data.content }; // viết như vậy thì nó sẽ hiểu payload này có key là data(content là nội dung bên trong data trả về, thường do bên phía backEnd quy định), và truyền vào data(của initialState) data của API getMoviesShowing() gọi về
-      // Backend trả về có cái key là content nữa
+  // async (_, { rejectWithValue }) => {// biến thứ nhất không xài thì chúng ta có thể bỏ trống
+  //   // Tham số thứ 2 là payload creator là một cái hàm, thì trong đây dùng để gọi API
+  //   // function return về data
+  //   // async này không cần phải try...catch nó sẽ tự trả về cho chúng ta, nếu thành công thì trả về data còn lỗi thì trả về lỗi
+  //   try {
+  //     // const { data } = await getMoviesShowing();
+  //     // /**
+  //     //  * // Bốc tách thẳng data từ thằng getMoviesShowing lấy về luôn
+  //     //  * // Mặc định thằng axios trả về một cái object {statucode, header,..} trong đó có cái key là data nữa
+  //     //  */
+  //     // // Nếu mà return data -> thì nó sẽ hiểu payload là data còn nếu return {data } thì nó sẽ hiểu payload có cái key là data
+  //     // // Lí do mà mình để nó trong một cái object là có thể mình sẽ trả nó về nhiều cái key
+  //     // return { data: data.content }; // viết như vậy thì nó sẽ hiểu payload này có key là data(content là nội dung bên trong data trả về, thường do bên phía backEnd quy định), và truyền vào data(của initialState) data của API getMoviesShowing() gọi về
+  //     // // Backend trả về có cái key là content nữa
 
-      // Tại vì error của thằng axios trả về nó hơi đặc biệt nên phải tự xử lý
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue({ error: error.response.data.content }); // Bắt lỗi cho chúng ta, trường hợp sử dụng rejectWithValue(error) thì cái data trả về là payload luôn
-    }
+  //     // Nếu mà có sử dụng thằng interceptor thì ta return về thẳng
+  //     const data = await getMoviesShowing();// data trả về từ lớp trung gian interceptor
+  //     return {data}; // return về cái này chính là payload, mà payload thì action.payload là nó ra data luôn, còn return về { data } -> data đây chính là key của payload
+
+      
+  //   } catch (error) {// Tại vì error của thằng axios trả về nó hơi đặc biệt nên phải tự xử lý
+  //     console.log(error);
+  //     return rejectWithValue({ error: error.response.data.content }); // Bắt lỗi cho chúng ta, trường hợp sử dụng rejectWithValue(error) thì cái data trả về là payload luôn
+  //   } 
+  // }
+
+
+  // Với việc đã format lại error từ interceptor thì bay giờ hàm gọi API ta có thể việc lại nhưu sau
+  async () => {
+    const data = await getMoviesShowing();// đảm bảo rằng khi gọi API  thành công thì nó sẽ trả về liền cái data trong content
+    return {data}
+    // Ở đây ta không cần phải try.. catch để bắt lỗi vì ta đã format nó ở bên interceptor, nếu mà có lỗi thì nó sẽ nhẩy xuống hàm rejected của reducer bên dưới
+    // Và bây giờ lỗi ở reject chúng ta ko phải action.payload.error nữa mà action.error.message -> để qua ra thông báo lỗi khi mà có lỗi
   }
 );
 
@@ -61,7 +74,7 @@ const homeMovieSlice = createSlice({
     },
     [getShowing.rejected]: (state, action) => {
       // sao cái này nó không bắt lỗi và trả ra lỗi
-      return { ...state, isLoading: false, error: action.payload.error };
+      return { ...state, isLoading: false, error: action.error.message };
     },
   },
 });
