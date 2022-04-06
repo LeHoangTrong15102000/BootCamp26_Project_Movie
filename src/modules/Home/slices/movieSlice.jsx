@@ -9,9 +9,9 @@ const initialState = {
 
 // Tạo actions thông qua createAsyncThunk, gọi API để thực hiện các lệnh của actions
 export const getShowing = createAsyncThunk(
-  'home/movie/getShowing',
+  'home/movie/getShowing',// tên actions
   // Lần đầu tiên nó sẽ tự động Action Request, thành công thì nó se tự động success
-  async () => {
+  async () => {// function return về data
     // async này không cần phải try...catch nó
     const { data } = await getMoviesShowing();
     return { data: data.content }; // viết như vậy thì nó sẽ hiểu payload này có key là data, và truyền vào data(của initialState) data của API getMoviesShowing() gọi về
@@ -31,6 +31,7 @@ const homeMovieSlice = createSlice({
      * }
      */
   },
+  // Thì ở dưới đây nó sẽ tự động generate ra cho mình những cái type tương ứng luôn, mà chúng ta không cần phải đi dispatch từng cái một nữa
   extraReducers: {
     // Các actions types
     // Đối với action asynchrounse, trong đây chứa action bất đồng bộ
