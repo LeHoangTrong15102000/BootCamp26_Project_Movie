@@ -9,5 +9,7 @@
  *
  * - Do trong redux toolkit nó đã chứa redux thunk rồi, nên giờ muốn dispatch cái hàm lên thì chỉ cần rồi phương thức createAsyncThunk trong redux toolkit là được.
  *      + Nó sẽ giúp chúng ta tự động generate ra 3 action
- *
+ * - Khi mà sử dụng cái createAsyncThunk(action của chúng ta) thì nó sẽ tự động làm hết, lần đầu tiên khi mà gọi thì nó sẽ tự động dispatch cái request, thành công thì nó sẽ tự động dispatch cái success, thất bại thì nó sẽ tự động dispatch cái failure -> để mà nhận được 3 cái actions đó thì chúng ta phải viết nó trong một cái keys(extraReducers của createSlice)
+ * - Tại createAsyncThunk mình muốn tự xử lý lỗi thì chắc mình phải dùng try...catch thôi
+ *      + Dùng rejectWithValue tham số thứ 2 của hàm async thunk, tham số thứ 1 là cái giá trị mình thực hiện với nó
  */

@@ -1,17 +1,20 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMovieShowing } from '../actions/movieActions';
+// import { getMovieShowing } from '../actions/movieActions';
+import { getShowing } from '../slices/movieSlice';
 // import homeMovie from '../reducers/movieReducers'
 
 const MovieShowing = () => {
   const dispatch = useDispatch();
   // Tên Reducer lấy từ rootReducer về
-  const { data, isLoading, error } = useSelector((state) => state.homeMovie); // Gọi tử rootReducers về
+  const { data, isLoading, error } = useSelector(
+    (state) => state.homeMovieSlice
+  ); // Gọi tử rootReducers về
 
   // Sử dụng useEffect để call API
   useEffect(() => {
     // dispatch lên cái getMovieShowing
-    dispatch(getMovieShowing());
+    dispatch(getShowing());
   }, []);
 
   // Nếu isLoading là true thì nó cứ load như này hoài

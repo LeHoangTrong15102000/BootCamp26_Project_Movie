@@ -8,13 +8,30 @@ const initialState = {
 };
 
 // Tạo actions thông qua createAsyncThunk, gọi API để thực hiện các lệnh của actions
+// createAsyncThunk chỉ sử dụng cho các hàm xử lý trước khi dispatch
 export const getShowing = createAsyncThunk(
-  'home/movie/getShowing',// tên actions
+  'home/movie/getShowing', // tên actions, tên actions type sẽ tư động nối lại cho chúng ta
   // Lần đầu tiên nó sẽ tự động Action Request, thành công thì nó se tự động success
-  async () => {// function return về data
-    // async này không cần phải try...catch nó
-    const { data } = await getMoviesShowing();
-    return { data: data.content }; // viết như vậy thì nó sẽ hiểu payload này có key là data, và truyền vào data(của initialState) data của API getMoviesShowing() gọi về
+  async (_, { rejectWithValue }) => {
+    // Tham số thứ 2 là payload creator là một cái hàm, thì trong đây dùng để gọi API
+    // function return về data
+    // async này không cần phải try...catch nó sẽ tự trả về cho chúng ta, nếu thành công thì trả về data còn lỗi thì trả về lỗi
+    try {
+      const { data } = await getMoviesShowing();
+      /**
+       * // Bốc tách thẳng data từ thằng getMoviesShowing lấy về luôn
+       * // Mặc định thằng axios trả về một cái object {statucode, header,..} trong đó có cái key là data nữa
+       */
+      // Nếu mà return data -> thì nó sẽ hiểu payload là data còn nếu return {data } thì nó sẽ hiểu payload có cái key là data
+      // Lí do mà mình để nó trong một cái object là có thể mình sẽ trả nó về nhiều cái key
+      return { data: data.content }; // viết như vậy thì nó sẽ hiểu payload này có key là data(content là nội dung bên trong data trả về, thường do bên phía backEnd quy định), và truyền vào data(của initialState) data của API getMoviesShowing() gọi về
+      // Backend trả về có cái key là content nữa
+
+      // Tại vì error của thằng axios trả về nó hơi đặc biệt nên phải tự xử lý
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue({ error: error.response.data.content }); // Bắt lỗi cho chúng ta, trường hợp sử dụng rejectWithValue(error) thì cái data trả về là payload luôn
+    }
   }
 );
 
@@ -31,7 +48,7 @@ const homeMovieSlice = createSlice({
      * }
      */
   },
-  // Thì ở dưới đây nó sẽ tự động generate ra cho mình những cái type tương ứng luôn, mà chúng ta không cần phải đi dispatch từng cái một nữa
+  // Thì ở dưới đây nó sẽ tự động generate ra cho mình những cái type tương ứng luôn, mà chúng ta không cần phải đi dispatch từng cái type một trong Reducers nữa
   extraReducers: {
     // Các actions types
     // Đối với action asynchrounse, trong đây chứa action bất đồng bộ
@@ -39,10 +56,12 @@ const homeMovieSlice = createSlice({
       return { ...state, isLoading: true };
     },
     [getShowing.fulfilled]: (state, action) => {
+      // cái data dưới đây là cái biến data trong initialState của chúng ta
       return { ...state, isLoading: false, data: action.payload.data };
     },
     [getShowing.rejected]: (state, action) => {
-      return { ...state, isLoading: false, error: action.error };
+      // sao cái này nó không bắt lỗi và trả ra lỗi
+      return { ...state, isLoading: false, error: action.payload.error };
     },
   },
 });
@@ -52,5 +71,4 @@ const homeMovieSlice = createSlice({
 // actions bình thường sẽ dispatch như sau
 // export const { increase, decrease, increaseByAmount } = homeMovieSlice.actions;// thì dispatch actions nó sẽ đi vào reducer thực hiện cái lệnh mã cho mình
 
-// action bất đồng bộ thì phải export như vậy, export ra để đưa vào rootReducer
-export default homeMovieSlice.reducer;
+export default homeMovieSlice.reducer; // export tất cả các actions bao gồm cả action bất đồng bộ ra reducers
