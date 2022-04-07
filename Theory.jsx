@@ -35,4 +35,13 @@
  *  - Lazy-load là khái niện giúp chúng ta chia nhỏ code ra thành nhiều file js khác nhau và nó sẽ dựa trên cái router của chúng ta
  *      + ví dụ khi mà truy cập vào localhost:3000 thì nó chỉ cần tải các file js nào liên quan tới module home(ví dụ như homepage) thì mình chỉ muốn nó download những file js thuộc về module homepag
  *       + Sau đó mình đi vào trang movieDetails thì nó mới đi nó load những file js của movieDetail thôi, tức là mình đi tới trang nào thì nó mới load tới file js của trang đó
+ *      + Nó chỉ chứa code của module nó cần hiển thị ra giao diện thôi - kỹ thuật lazy-load là như thế nó chia nhỏ cái bundle-size của mình ra
+ *      + Ưu điểm của nó là lần đầu tiền nó load nhanh hơn rất là nhiều, nhược điểm là mỗi lần nhấn vào thằng nào thì cần phải có thời gian để load nhưng mà cái nhược điểm đó ko đáng kể -> Ưu điểm lớn hơn > nhược điểm 
+ *  - Tóm lại dùng lazy để mà pending lại việc js của một cái  modules hoặc pages nào đó (Thông thường đơn vị lazy là pages)
+ */
+
+/**
+ * Error Boundaries là react component dùng để bắt tất cả các lỗi js xảy ra trong component tree của mình và sẽ hiển thị ra mội fallback UI
+ *      - Thay vì để người dùng thấy trang trắng tinh mà không có gì hết (do lỗi -> mà tìm lỗi không ra) thì mình nên display ra một fallback UI
+ *      - Thằng error boundary này sẽ dùng là class component vì thằng hooks chưa hỗ trợ các cái lifecycle
  */
