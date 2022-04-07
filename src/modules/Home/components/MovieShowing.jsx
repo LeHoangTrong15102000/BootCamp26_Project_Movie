@@ -22,7 +22,7 @@ const MovieShowing = () => {
   const goToMovieDetails = (movieId) => {
     // Navigate tới trang movies/:movieId
     // Để điều hướng tới cái trang đó thì sử dụng cái hook của thz react-router-dom
-    navigate(`movies/${movieId}`); // Điều hướng tới trang muốn tới
+    navigate(`movies/${movieId}`); // Điều hướng tới trang details của phim
   };
 
   // Nếu isLoading là true thì nó cứ load như này hoài

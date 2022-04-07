@@ -26,4 +26,10 @@
 
 /**
  * Luyện tập thêm một chút từ details -> nhấn vào details chuyển sang /movies/:movieId
+ * Thông thường redux devtool nó sẽ đi theo: tên Modules - chức năng trong modules - tên actions - state của action(pending, fulfilled, rejected)
+ * 
+ * 
+ * 
+ * // Phần  router có một vấn đề nữa cẩn phải nắm đó là về lazy-load
+ * * Note
  */
