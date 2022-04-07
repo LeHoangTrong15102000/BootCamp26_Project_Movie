@@ -37,10 +37,11 @@ axiosClient.interceptors.response.use(
      * // response.data là format của axios, sau đó .content là format của backEnd cybersoft quy định
      */
   },
-  (error) => {// Có lỗi thì trả về ở đây
-    // format lại error trả ra bên ngoài  
+  (error) => {
+    // Có lỗi thì trả về ở đây
+    // format lại error trả ra bên ngoài
     // Thêm Promise.reject để đảm bảo rằng nó sẽ nhảy xuống catch tại nơi gọi API để lấy ra lỗi khi mà gọi API thất bại
-    return Promise.reject(error.response.data.content);// Nếu có lỗi thì nó sẽ return về cái định dạng này
+    return Promise.reject(error.response.data.content); // Nếu có lỗi thì nó sẽ return về cái định dạng này
     // Nếu có lỗi thì nó sẽ nhảy xuống thz rejected của Reducer và quăng ra cái lỗi cho chúng ta
   }
 );

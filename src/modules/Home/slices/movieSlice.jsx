@@ -31,18 +31,16 @@ export const getShowing = createAsyncThunk(
   //     const data = await getMoviesShowing();// data trả về từ lớp trung gian interceptor
   //     return {data}; // return về cái này chính là payload, mà payload thì action.payload là nó ra data luôn, còn return về { data } -> data đây chính là key của payload
 
-      
   //   } catch (error) {// Tại vì error của thằng axios trả về nó hơi đặc biệt nên phải tự xử lý
   //     console.log(error);
   //     return rejectWithValue({ error: error.response.data.content }); // Bắt lỗi cho chúng ta, trường hợp sử dụng rejectWithValue(error) thì cái data trả về là payload luôn
-  //   } 
+  //   }
   // }
-
 
   // Với việc đã format lại error từ interceptor thì bay giờ hàm gọi API ta có thể việc lại nhưu sau
   async () => {
-    const data = await getMoviesShowing();// đảm bảo rằng khi gọi API  thành công thì nó sẽ trả về liền cái data trong content
-    return {data}
+    const data = await getMoviesShowing(); // đảm bảo rằng khi gọi API  thành công thì nó sẽ trả về liền cái data trong content
+    return { data };
     // Ở đây ta không cần phải try.. catch để bắt lỗi vì ta đã format nó ở bên interceptor, nếu mà có lỗi thì nó sẽ nhẩy xuống hàm rejected của reducer bên dưới
     // Và bây giờ lỗi ở reject chúng ta ko phải action.payload.error nữa mà action.error.message -> để qua ra thông báo lỗi khi mà có lỗi
   }

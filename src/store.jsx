@@ -23,6 +23,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducer';
 import homeMovieSlice from './modules/Home/slices/movieSlice';
+import movieDetailsSlice from './modules/Movies/slices/movieDetails';
 
 // Mặc định configureStore đã bao gồm redux-devtool và redux thunk
 // Hàm configureStore nó đã làm hết cho chúng ta, chỉ cần truyền reducer vào thôi
@@ -34,7 +35,10 @@ const store = configureStore({
 
   // Tự động combine các child reducer
   reducer: {
+    // home modules
     homeMovieSlice,
+    // movie modules
+    movieDetailsSlice,
   },
 });
 
