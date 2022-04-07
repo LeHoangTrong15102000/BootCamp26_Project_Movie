@@ -13,23 +13,26 @@
  * - Tại createAsyncThunk mình muốn tự xử lý lỗi thì chắc mình phải dùng try...catch thôi
  *      + Dùng rejectWithValue tham số thứ 2 của hàm async thunk, tham số thứ 1 là cái giá trị mình thực hiện với nó\
  * - Bây giờ chúng ta sẽ thay thế actions reducer, types bằng cái slice, asynchrounse actions thì sẽ thay bằng createAsyncThunk
- * 
+ *
  * - Thì tác dụng của interceptor là can thiệp vào quá trình response trả về từ nơi gọi axios, sau đó nó đi làm gì đó có quyền thay đổi data trả ra -> thì công việc này nó sẽ giúp mình chuẩn hóa cái format chung, thay vì nơi nào gọi axios cũng response.data.content
  *      - Việc này giúp giảm thiểu lặp code, và nơi gọi axios chắc chắn nó sẽ nhận được cái data đó rồi
- * 
- * - Tất cả các project nếu mà xài axios thì sẽ là: 
+ *
+ * - Tất cả các project nếu mà xài axios thì sẽ là:
  *          + response.data -> trả về data -> còn phần đuôi của data do bên phía backEnd cung cấp
  *          + error.response.data -> trả về lỗi khi có lỗi
- * 
+ *
  * - Một điều nữa khi mà dùng reduxtoolkit thì không cần phải cài redux và redux-thunk nữa
  */
 
 /**
  * Luyện tập thêm một chút từ details -> nhấn vào details chuyển sang /movies/:movieId
  * Thông thường redux devtool nó sẽ đi theo: tên Modules - chức năng trong modules - tên actions - state của action(pending, fulfilled, rejected)
- * 
- * 
- * 
+ *
+ *
+ *
  * // Phần  router có một vấn đề nữa cẩn phải nắm đó là về lazy-load
  * * Note
+ *  - Lazy-load là khái niện giúp chúng ta chia nhỏ code ra thành nhiều file js khác nhau và nó sẽ dựa trên cái router của chúng ta
+ *      + ví dụ khi mà truy cập vào localhost:3000 thì nó chỉ cần tải các file js nào liên quan tới module home(ví dụ như homepage) thì mình chỉ muốn nó download những file js thuộc về module homepag
+ *       + Sau đó mình đi vào trang movieDetails thì nó mới đi nó load những file js của movieDetail thôi, tức là mình đi tới trang nào thì nó mới load tới file js của trang đó
  */
