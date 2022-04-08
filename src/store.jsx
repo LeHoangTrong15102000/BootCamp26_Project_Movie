@@ -21,7 +21,7 @@
 // Redux toolkit Configuration
 // Khi mà dùng Reducer của Redux toolkit thì về bản chất thì nó sẽ bỏ qua combineReducers cho mình luôn
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducer';
+// import rootReducer from './reducer';
 import homeMovieSlice from './modules/Home/slices/movieSlice';
 import movieDetailsSlice from './modules/Movies/slices/movieDetails';
 
