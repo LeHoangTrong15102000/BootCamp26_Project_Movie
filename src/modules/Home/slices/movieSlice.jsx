@@ -40,6 +40,7 @@ export const getShowing = createAsyncThunk(
   // Với việc đã format lại error từ interceptor thì bay giờ hàm gọi API ta có thể việc lại nhưu sau
   async () => {
     const data = await getMoviesShowing(); // đảm bảo rằng khi gọi API  thành công thì nó sẽ trả về liền cái data trong content
+    console.log(data);
     return { data };
     // Ở đây ta không cần phải try.. catch để bắt lỗi vì ta đã format nó ở bên interceptor, nếu mà có lỗi thì nó sẽ nhẩy xuống hàm rejected của reducer bên dưới
     // Và bây giờ lỗi ở reject chúng ta ko phải action.payload.error nữa mà action.error.message -> để qua ra thông báo lỗi khi mà có lỗi

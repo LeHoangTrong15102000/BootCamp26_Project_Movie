@@ -13,10 +13,15 @@ const MovieShowing = () => {
     (state) => state.homeMovieSlice
   ); // Gọi tử rootReducers về
 
+  console.log(data);
+  console.log(isLoading);
+  console.log(error);
+
   // Sử dụng useEffect để call API
   useEffect(() => {
     // dispatch lên cái getMovieShowing
     dispatch(getShowing());
+    // console.log('Hello error');
   }, []);
 
   const goToMovieDetails = (movieId) => {
@@ -27,7 +32,7 @@ const MovieShowing = () => {
 
   // Nếu isLoading là true thì nó cứ load như này hoài
   if (isLoading) {
-    return <p>Loading ...</p>;
+    return <p>Loading Data...</p>;
   }
   if (error) {
     // Cho nó một cái fallBack, để không may cái err nó ko hiện ra
