@@ -21,7 +21,7 @@ const axiosClient = axios.create({
 
     return qs.stringify(params, { skipEmptyString: true, skipNull: true }); // Về mặc định thì axios ko bỏ qua empty string, còn chúng ta muốn bỏ qua thì setup cái mặc định vào
   },
-});
+}); 
 
 // interceptor -> kết nối với API rồi trả về giao diện
 // Cấu hình cho nó

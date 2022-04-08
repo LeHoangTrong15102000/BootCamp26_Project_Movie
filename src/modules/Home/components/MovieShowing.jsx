@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { getMovieShowing } from '../actions/movieActions';
 import { getShowing } from '../slices/movieSlice';
@@ -13,9 +13,7 @@ const MovieShowing = () => {
     (state) => state.homeMovieSlice
   ); // Gọi tử rootReducers về
 
-  console.log(data);
-  console.log(isLoading);
-  console.log(error);
+  
 
   // Sử dụng useEffect để call API
   useEffect(() => {
