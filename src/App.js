@@ -1,19 +1,19 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
-import { Global } from '@emotion/react';
-import { lazy, Suspense } from 'react';
-import GlobalStyles from './globalStyles';
+import { Global } from "@emotion/react";
+import { lazy, Suspense } from "react";
+import GlobalStyles from "./globalStyles";
 // import HomePage from "./modules/Home/pages/HomePage";
 // import MovieComming from "./modules/Movies/pages/MovieComming";
 // import MovieShowing from "./modules/Movies/pages/MovieShowing";
 // import MovieDetails from "./modules/Movies/pages/MovieDetails";
-import NotFound from './components/NotFound';
-import ErrorBoundary from 'components/ErrorBoundary';
+import NotFound from "./components/NotFound";
+import ErrorBoundary from "components/ErrorBoundary";
 
-const HomePage = lazy(() => import('./modules/Home/pages/HomePage'));// Mới đầu vào chạy homePage thì chỉ có mỗi file js của homepage là chạy thôi
-const MovieShowing = lazy(() => import('./modules/Movies/pages/MovieShowing'));
-const MovieComming = lazy(() => import('./modules/Movies/pages/MovieComming'));
-const MovieDetails = lazy(() => import('./modules/Movies/pages/MovieDetails'));
+const HomePage = lazy(() => import("./modules/Home/pages/HomePage")); // Mới đầu vào chạy homePage thì chỉ có mỗi file js của homepage là chạy thôi
+const MovieShowing = lazy(() => import("./modules/Movies/pages/MovieShowing"));
+const MovieComming = lazy(() => import("./modules/Movies/pages/MovieComming"));
+const MovieDetails = lazy(() => import("./modules/Movies/pages/MovieDetails"));
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
       </Suspense>
 
       <Global styles={GlobalStyles} />
+      {/* // cả cục này là children của nó */}
     </ErrorBoundary>
   );
 }
