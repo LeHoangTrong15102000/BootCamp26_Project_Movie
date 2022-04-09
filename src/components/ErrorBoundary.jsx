@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export default class ErrorBoundary extends Component {
     }
     return (
       // Children là những thẻ nằm trong component này
-      <>{this.props.children}</> //chưa khai báo state children mà đã gọi
+      <>{this.props.children}</>
     );
   }
 }
