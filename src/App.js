@@ -14,6 +14,9 @@ const HomePage = lazy(() => import("./modules/Home/pages/HomePage")); // Má»›i Ä
 const MovieShowing = lazy(() => import("./modules/Movies/pages/MovieShowing"));
 const MovieComming = lazy(() => import("./modules/Movies/pages/MovieComming"));
 const MovieDetails = lazy(() => import("./modules/Movies/pages/MovieDetails"));
+const DemoUseCallback = lazy(() => import("./_playground/Hook/DemoUseCallback"))
+const DemoUseMemos = lazy(() => import("./_playground/Hook/DemoUseMemo"))
+const DemoUseReducer = lazy(() => import("./_playground/Hook/DemoUseReducer"))
 
 function App() {
   return (
@@ -31,6 +34,10 @@ function App() {
           </Route>
 
           <Route path="*" element={<NotFound />} />
+
+          <Route path="/use-callback" element={<DemoUseCallback />}/>
+          <Route path="/use-memo" element={<DemoUseMemos />}/>
+          <Route path="/use-reducer" element={<DemoUseReducer />}/>
         </Routes>
       </Suspense>
 
