@@ -55,10 +55,16 @@ const homeMovieSlice = createSlice({
     // vd như increasement() {} nó sẽ hiểu cái types(increase) là tên của cái actions đó luôn, vừa là actions vừa là cái case cửa Reducer
     // Nếu là action bình thường thì viết trong đây, bản thân các action(name) thì nó cũng là types của action đó
     /**
-     * increase() {// dispatch cái actions
+     * increase() {// dispatch cái actions 
      *  state.value++ // thì nó sẽ vào reducers thực hiện cái đoạn mã này cho mình
      * }
      */
+    increase: (state) => {
+      return {...state, count: state.count + 1}
+    },
+    decrease: (state) => {
+      return {...state, count: state.count - 1}
+    }
   },
   // Thì ở dưới đây nó sẽ tự động generate ra cho mình những cái type tương ứng luôn, mà chúng ta không cần phải đi dispatch từng cái type một trong Reducers nữa
   extraReducers: {
@@ -82,5 +88,6 @@ const homeMovieSlice = createSlice({
 
 // actions bình thường sẽ dispatch như sau
 // export const { increase, decrease, increaseByAmount } = homeMovieSlice.actions;// thì dispatch actions nó sẽ đi vào reducer thực hiện cái lệnh mã cho mình
+export const { increase } = homeMovieSlice.actions 
 
 export default homeMovieSlice.reducer; // export tất cả các actions bao gồm cả action bất đồng bộ ra reducers
