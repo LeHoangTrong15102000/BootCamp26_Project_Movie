@@ -1,8 +1,8 @@
-import React, { useEffect, Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 // import { getMovieShowing } from '../actions/movieActions';
-import { getShowing } from "../slices/movieSlice";
-import { useNavigate } from "react-router-dom";
+import { getShowing } from '../slices/movieSlice';
+import { useNavigate } from 'react-router-dom';
 // import homeMovie from '../reducers/movieReducers'
 
 const MovieShowing = () => {
@@ -32,7 +32,7 @@ const MovieShowing = () => {
   }
   if (error) {
     // Cho nó một cái fallBack, để không may cái err nó ko hiện ra
-    return <p>{error || "Something went wrong"}</p>;
+    return <p>{error || 'Something went wrong'}</p>;
   }
 
   return (
