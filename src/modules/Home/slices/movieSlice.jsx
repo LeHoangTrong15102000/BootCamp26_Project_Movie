@@ -52,7 +52,7 @@ const homeMovieSlice = createSlice({
   name: 'home/movie', // bắt buộc phải có, thì về bản chất slice nó sẽ đi phân biệt từng cái reducer với nhau thông qua tên mình truyền vào
   initialState, // StateDefault mặc định của slice
   reducers: {
-    // vd như increasement() {} nó sẽ hiểu cái types(increase) là tên của cái actions đó luôn, vừa là actions vừa là cái case cửa Reducer
+    // vd như increasement() {} nó sẽ hiểu cái types(increase) là tên của cái actions đó luôn, vừa là actions vừa là cái "case type" của Reducer
     // Nếu là action bình thường thì viết trong đây, bản thân các action(name) thì nó cũng là types của action đó
     /**
      * increase() {// dispatch cái actions
@@ -88,6 +88,6 @@ const homeMovieSlice = createSlice({
 
 // actions bình thường sẽ dispatch như sau
 // export const { increase, decrease, increaseByAmount } = homeMovieSlice.actions;// thì dispatch actions nó sẽ đi vào reducer thực hiện cái lệnh mã cho mình
-export const { increase } = homeMovieSlice.actions;
+export const { increase, decrease } = homeMovieSlice.actions;
 
 export default homeMovieSlice.reducer; // export tất cả các actions bao gồm cả action bất đồng bộ ra reducers
