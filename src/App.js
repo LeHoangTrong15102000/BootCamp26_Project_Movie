@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Global } from "@emotion/react";
 import { lazy, Suspense } from "react";
@@ -11,6 +11,8 @@ import NotFound from "./components/NotFound";
 import ErrorBoundary from "components/ErrorBoundary";
 
 const HomePage = lazy(() => import("./modules/Home/pages/HomePage")); // Mới đầu vào chạy homePage thì chỉ có mỗi file js của homepage là chạy thôi
+const LoginPage = lazy(() => import("./modules/Auth/pages/Login"));// Các cái page thì thường sẽ sử dụng kĩ thuật lazy load để tối ưu tốc độ tải trang
+const RegisterPage = lazy(() => import("./modules/Auth/pages/Register"))
 const MovieShowing = lazy(() => import("./modules/Movies/pages/MovieShowing"));
 const MovieComming = lazy(() => import("./modules/Movies/pages/MovieComming"));
 const MovieDetails = lazy(() => import("./modules/Movies/pages/MovieDetails"));
@@ -26,6 +28,9 @@ function App() {
       <Suspense fallback={<div>Loading Route....</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+
+          <Route path="/login" element={<LoginPage />} /> 
+          <Route path="/register" element={<RegisterPage />} /> 
 
           <Route path="/movies">
             <Route path="now-showing" element={<MovieShowing />} />
