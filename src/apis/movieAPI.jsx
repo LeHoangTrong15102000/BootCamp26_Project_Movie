@@ -12,6 +12,7 @@ export const getMoviesShowing = () => {
   });
 };
 
+// Call api lấy 
 export const getMoviesDetails = (movieId) => {
   return axios.get('QuanLyPhim/LayThongTinPhim', {
     params: {
@@ -19,5 +20,8 @@ export const getMoviesDetails = (movieId) => {
     },
   });
 };
+
+// call APi cho form đăng kí đăng nhập
+ 
 
 // action
