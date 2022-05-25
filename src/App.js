@@ -38,7 +38,7 @@ function App() {
             <Route path="now-showing" element={<MovieShowing />} />
             <Route path="coming-soon" element={<MovieComming />} />
             <Route path=":movieId" element={<MovieDetails />} />
-          </Route> 
+          </Route>
 
           {/* Nếu nhấn vào đường dẫn router nào ko có thì sẽ hiện ra như thế này */}
           <Route path="*" element={<NotFound />} />
