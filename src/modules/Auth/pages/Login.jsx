@@ -1,9 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { useDispatch , useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
 const Login = (props) => {
+  // State quản lí giá trị của ô input
   const [form, setForm] = useState({ taiKhoan: '', matKhau: '' });
-  const [errors , setErrors] = useState({taiKhoan: '', matKhau: ''});
+
+  // Thêm errors để set vào input nó có err bị lỗi(kiểm tra xem input nào nó đang bị lỗi để mà set giá trị err vào input đó)
+  // Quẳn lí các giá trị lỗi của ô input
+  const [errors, setErrors] = useState({ taiKhoan: '', matKhau: '' });
 
   // Cách thứ 1 là sử dụng useState để quản lý các ô input
   const handleChange = (event) => {
@@ -13,11 +17,15 @@ const Login = (props) => {
 
   // Nếu có nhiều lỗi thì phải cần validation hết những lỗi đó
   const handleBlur = (event) => {
-    const {name ,  value } = event.target
+    const { name, value } = event.target;
     if (!value) {
-      alert(`${name} is required!`)
+      // alert(`${name} is required!`);
+      setErrors((prevState) => ({
+        ...prevState,
+        [name]: 'Tài khoản không được để trống!',
+      }));
     }
-  }
+  };
 
   // Cách thứ 2 là sử dụng useRef để lưu trữ các ô input của chúng ta
   let inpTaiKhoan = useRef(null);
@@ -39,6 +47,11 @@ const Login = (props) => {
         {/* Sử dụng ref để control : Uncontrolled component */}
         {/* AKhi mà dữ liệu của thz useRef thay đỏii thì nó sẽ ko làm cho thz component render lại */}
         {/* <input type="text" id="taiKhoan" ref={inpTaiKhoan} name="taiKhoan" value={inpTaiKhoan.current.value} /> */}
+
+        {/* Nếu có lỗi trong tài khoản thì binding ra lỗi đó */}
+        {errors.taiKhoan && (
+          <span className="text-red-600">{errors.taiKhoan}</span>
+        )}
       </div>
 
       <div>
@@ -51,6 +64,9 @@ const Login = (props) => {
           onBlur={handleBlur}
           onChange={handleChange}
         />
+        {errors.matKhau && (
+          <span className="text-red-600">{errors.matKhau}</span>
+        )}
       </div>
     </form>
   );

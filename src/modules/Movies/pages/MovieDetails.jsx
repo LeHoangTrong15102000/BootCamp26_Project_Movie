@@ -21,7 +21,7 @@ const MovieDetails = () => {
     <div>
       <h3 className="text-info">MovieDetails</h3>
       <p>
-        Tên phim: <span className="text-warning">{data.tenPhim}</span>
+        Tên phim: <span className="text-orange-500">{data.tenPhim}</span>
       </p>
       <span className="text-secondary">Tóm tắt nội dung: {data.moTa}</span>
     </div>
