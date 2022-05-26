@@ -20,6 +20,7 @@ const Login = (props) => {
     const { name, value } = event.target;
     if (!value) {
       // alert(`${name} is required!`);
+      // Trong thực tế thì chúng ta còn phải validation thêm nhiều lỗi hơn chứ không phải là empty string không thôi
       setErrors((prevState) => ({
         ...prevState,
         [name]: 'Tài khoản không được để trống!',

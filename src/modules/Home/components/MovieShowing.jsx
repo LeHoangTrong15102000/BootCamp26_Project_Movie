@@ -42,7 +42,10 @@ const MovieShowing = () => {
       {data.map((movie, index) => (
         <Fragment key={index}>
           <p>{movie.tenPhim}</p>
-          <button onClick={() => goToMovieDetails(movie.maPhim)}>
+          <button
+            className="border border-stone-100 bg-stone-400 p-2"
+            onClick={() => goToMovieDetails(movie.maPhim)}
+          >
             Details
           </button>
         </Fragment>
