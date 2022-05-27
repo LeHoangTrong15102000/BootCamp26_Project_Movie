@@ -11,26 +11,37 @@ const Login = (props) => {
   } = useForm({
     defaultValue: { taiKhoan: '', matKhau: '' },
   });
+
+  // Tạo ra cái hàm hứng giá trị mà form trả về (là tham số thứ nhất(callBack Function thứ 1) của hàm handleSubmit trong react-hook-form)
+  const onSubmit = (values) => {
+    console.log("values",values)
+  }
+
   return (
+    // khi mà chạy cái form thì nó sẽ có một sự kiện là onSubmit và gọi hàm handleSubmit ra
+    // Hàm handleSubmit thì nó sẽ có 2 cái tham số là 2 cái callBack function, CB function thứ nhất là hàm Valid trả về object data trong form của chúng ta
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Tài khoản</label>
         <input
           type="text"
           id="username"
-          {...register('username', { required: true })}
+          {...register('taiKhoan', { required: true })}
         />
-        {errors.username && <span>This field is required</span>}
+        {errors.username && <span className="text-red-500">This field is required</span>}
       </div>
       <div>
         <label htmlFor="password">Mật khẩu</label>{' '}
         <input
           type="password"
           id="password"
-          {...register('password', { required: true })}
+          {...register('matKhau', { required: true })}
         />
-        {errors.password && <span>This field is required</span>}
+        {errors.password && <span className="text-red-500">This field is required</span>}
       </div>
+
+      {/* một cái button mà nằm trong cái tag form thì mặc định cái type của nó là submit => có nghĩa là nó mà click vào cái button thì nó sẽ submit cái form đó */}
+      <button className="bg-cyan-500 text-white p-2 ml-5">Đăng nhập</button>
     </form>
   );
 };
