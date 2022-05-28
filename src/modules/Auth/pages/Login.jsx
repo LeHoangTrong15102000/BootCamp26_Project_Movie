@@ -6,8 +6,9 @@ const Login = (props) => {
   // Thì thằng này dựa trên cơ chế của customed và Uncontrolled component(ref) để tạo ra cái hooks tên là useForm
   // Register có nghĩa là dùng để đăng kí ô input
   // handleSubmit sẽ xử lý việc thành công hay thất bại để gọi tới callBack tương ứng
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, formState:  { errors } } = useForm({
     defaultValue: { taiKhoan: '', matKhau: '' },
+    mode: 'onTouched',
   });
 
   // Tạo ra cái hàm hứng giá trị mà form trả về (là tham số thứ nhất(callBack Function thứ 1) của hàm handleSubmit trong react-hook-form)
@@ -26,11 +27,11 @@ const Login = (props) => {
         <input
           type="text"
           id="username"
-          {...register('taiKhoan', { required: true })}
+          {...register('taiKhoan', { required: true, minLength: 5, maxLength: 20 })}
         />
-        {/* {errors.username && (
-          <span className="text-red-500">This field is required</span>
-        )} */}
+        {errors.taiKhoan && (
+          <span className="text-red-500">This field is required!</span>
+        )}
       </div>
       <div>
         <label htmlFor="password">Mật khẩu</label>{' '}
@@ -39,9 +40,9 @@ const Login = (props) => {
           id="password"
           {...register('matKhau', { required: true })}
         />
-        {/* {errors.password && (
-          <span className="text-red-500">This field is required</span>
-        )} */}
+        {errors.matKhau && (
+          <span className="text-red-500">This field is required!</span>
+        )}
       </div>
 
       {/* một cái button mà nằm trong cái tag form thì mặc định cái type của nó là submit => có nghĩa là nó mà click vào cái button thì nó sẽ submit cái form đó */}

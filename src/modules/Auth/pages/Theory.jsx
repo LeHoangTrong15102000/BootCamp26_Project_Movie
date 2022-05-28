@@ -10,4 +10,13 @@
 // * * * * * * * * * *                          - Thì thầng useForm nó sẽ có tham số đầu tiên chính là thằng defaultValue: {}
 // - Thì thằng useForm nó sẽ trả về cho chúng ta một hàm là register và một hàm là handleSubmit,
 // - Khi sử dụng useForm thì cái name , value , onBlur, onChange là không cần thiết vì thư viện sẽ handle việc cho mình. Thì để mà lấy giá trị được của nó thì trong ô input ta truyền vào {...register("tên của ô input đó")}
-// - Lúc trước khi thao tác với onSubmit thì phải gọi sự kiện ngăn chặn trình duyệt load lại trang thì khi mà sử dụng react-hook-form nó tự xử lý điều đó cho mình
+// - Lúc trước khi thao tác với onSubmit thì phải gọi sự kiện ngăn chặn trình duyệt load lại trang thì khi mà sử dụng react-hook-form nó tự xử lý điều đó cho mình, t hằng react hook form dùng cơ chế ref nên nó quản lí việc re-render khá là tốt => tăng cái performent lên cho cái app của mình
+// - Xử lý validation cho ô input thì cũng viết nó bên trong hàm {...register}, tham số thứ 2 của thz register là Option chứa các validation mà chúng ta muốn
+/**
+ *          - Ví dụ chúng ta muốn validate là required thì phải có key required
+ *          - // Required: true là cái validation mặc định luôn , ô input phải có giá trị thì nó mới pass,  còn không có giá trị thì nó ko pass, nó sẽ tự động focus vào ô input có lỗi xảy ra luôn
+ *          - Thì để hiển thị lỗi ra cho n gười dùng thấy thì trong phần useForm nó có 1 tham số nữa là formState: {errors} , trong formState chứa 1 object là cái key errors của chúng ta giúp kiểm tra lỗi của từng ô input => mỗi lần có lỗi thì nó sẽ Re-render lại giao diện
+ *          - Trong usaForm nó  có một hàm là "mode" thì mặc định mode chứa giá trị là onSubmit có nghĩa là khi mình submit rồi thì nó mới đi nó validation cho mình
+ *                  + onTouched trong mode là sự kiện kết hợp giữa onChange và onBlur
+ *          - Trong cái tham số thứ 2 của required thì nó chứa key là min và max thường dùng cho ô input là number,  minLength và maxLength là độ dài của cái text của chúng ta, pattern thì ta sẽ truyền vào cái chuỗi reget . Nếu mà ô input của email khớp với chuỗi reget thì pass còn không thì sẽ sinh ra lỗi
+ */ 
