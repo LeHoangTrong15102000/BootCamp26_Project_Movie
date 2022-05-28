@@ -10,3 +10,4 @@
 // * * * * * * * * * *                          - Thì thầng useForm nó sẽ có tham số đầu tiên chính là thằng defaultValue: {}
 // - Thì thằng useForm nó sẽ trả về cho chúng ta một hàm là register và một hàm là handleSubmit,
 // - Khi sử dụng useForm thì cái name , value , onBlur, onChange là không cần thiết vì thư viện sẽ handle việc cho mình. Thì để mà lấy giá trị được của nó thì trong ô input ta truyền vào {...register("tên của ô input đó")}
+// - Lúc trước khi thao tác với onSubmit thì phải gọi sự kiện ngăn chặn trình duyệt load lại trang thì khi mà sử dụng react-hook-form nó tự xử lý điều đó cho mình

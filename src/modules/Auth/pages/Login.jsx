@@ -4,23 +4,23 @@ import { useForm } from 'react-hook-form';
 
 const Login = (props) => {
   // Thì thằng này dựa trên cơ chế của customed và Uncontrolled component(ref) để tạo ra cái hooks tên là useForm
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  // Register có nghĩa là dùng để đăng kí ô input
+  // handleSubmit sẽ xử lý việc thành công hay thất bại để gọi tới callBack tương ứng
+  const { register, handleSubmit } = useForm({
     defaultValue: { taiKhoan: '', matKhau: '' },
   });
 
   // Tạo ra cái hàm hứng giá trị mà form trả về (là tham số thứ nhất(callBack Function thứ 1) của hàm handleSubmit trong react-hook-form)
   const onSubmit = (values) => {
-    console.log("values",values)
-  }
+    console.log('values', values);
+  };
+
+  console.log('Re-render');
 
   return (
     // khi mà chạy cái form thì nó sẽ có một sự kiện là onSubmit và gọi hàm handleSubmit ra
-    // Hàm handleSubmit thì nó sẽ có 2 cái tham số là 2 cái callBack function, CB function thứ nhất là hàm Valid trả về object data trong form của chúng ta
-    <form onSubmit={handleSubmit}>
+    // Hàm handleSubmit thì nó sẽ có 2 cái tham số là 2 cái callBack function, CB function thứ nhất là hàm Valid trả về object data trong form của chúng ta, CB function thứ 2 là onInvalid là khi mà submit thì thất bại thì nó bị cái lỗi nào đó liên quan đến validation , thì khi mà thất bại thì nó sẽ nhảy vào cái callBack thứ 2
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="username">Tài khoản</label>
         <input
@@ -28,7 +28,9 @@ const Login = (props) => {
           id="username"
           {...register('taiKhoan', { required: true })}
         />
-        {errors.username && <span className="text-red-500">This field is required</span>}
+        {/* {errors.username && (
+          <span className="text-red-500">This field is required</span>
+        )} */}
       </div>
       <div>
         <label htmlFor="password">Mật khẩu</label>{' '}
@@ -37,11 +39,13 @@ const Login = (props) => {
           id="password"
           {...register('matKhau', { required: true })}
         />
-        {errors.password && <span className="text-red-500">This field is required</span>}
+        {/* {errors.password && (
+          <span className="text-red-500">This field is required</span>
+        )} */}
       </div>
 
       {/* một cái button mà nằm trong cái tag form thì mặc định cái type của nó là submit => có nghĩa là nó mà click vào cái button thì nó sẽ submit cái form đó */}
-      <button className="bg-cyan-500 text-white p-2 ml-5">Đăng nhập</button>
+      <button className="bg-cyan-500 text-white p-2 ml-10">Đăng nhập</button>
     </form>
   );
 };
