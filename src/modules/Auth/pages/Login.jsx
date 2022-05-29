@@ -32,13 +32,22 @@ const Login = (props) => {
           type="text"
           id="username"
           {...register('taiKhoan', {
-            required: true,
-            minLength: 5,
-            maxLength: 20,
+            required: {
+              value: true,
+              message: 'Trường này không được để trống!',
+            },
+            minLength: {
+              value: 5,
+              message: 'Tài khoản phải từ 5 đến 20 kí tự!',
+            },
+            maxLength: {
+              value: 20,
+              message: 'Tài khoản phải từ 5 đến 20 kí tự!',
+            },
           })}
         />
         {errors.taiKhoan && (
-          <span className="text-red-500">This field is required!</span>
+          <span className="text-red-500">{errors.taiKhoan.message}</span>
         )}
       </div>
       <div>
@@ -47,13 +56,16 @@ const Login = (props) => {
           type="password"
           id="password"
           {...register('matKhau', {
-            required: true,
+            required: {
+              value: true,
+              message: 'Trường này không được để trống!',
+            },
             minLenght: 8,
             maxLength: 20,
           })}
         />
         {errors.matKhau && (
-          <span className="text-red-500">This field is required!</span>
+          <span className="text-red-500">{errors.matKhau.message}</span>
         )}
       </div>
 

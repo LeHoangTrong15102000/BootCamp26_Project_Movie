@@ -19,4 +19,6 @@
  *          - Trong usaForm nó  có một hàm là "mode" thì mặc định mode chứa giá trị là onSubmit có nghĩa là khi mình submit rồi thì nó mới đi nó validation cho mình
  *                  + onTouched trong mode là sự kiện kết hợp giữa onChange và onBlur
  *          - Trong cái tham số thứ 2 của required thì nó chứa key là min và max thường dùng cho ô input là number,  minLength và maxLength là độ dài của cái text của chúng ta, pattern thì ta sẽ truyền vào cái chuỗi reget . Nếu mà ô input của email khớp với chuỗi reget thì pass còn không thì sẽ sinh ra lỗi
- */ 
+ *          - Thì đó là cách sử dụng thứ 1 , nhưng cách thứ 1 gặp vấn đề là ko biết là đang bị lỗi gì để show ra cái message cho nó đúng
+ *          - Do đó chúng ta sẽ thực hiện cách thứ 2
+ */
