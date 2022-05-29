@@ -1,4 +1,4 @@
-import axios from 'axiosClient';
+import axios from './axiosClient';
 
 export const login = () => {};
 

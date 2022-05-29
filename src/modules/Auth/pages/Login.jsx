@@ -6,7 +6,11 @@ const Login = (props) => {
   // Thì thằng này dựa trên cơ chế của customed và Uncontrolled component(ref) để tạo ra cái hooks tên là useForm
   // Register có nghĩa là dùng để đăng kí ô input
   // handleSubmit sẽ xử lý việc thành công hay thất bại để gọi tới callBack tương ứng
-  const { register, handleSubmit, formState:  { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValue: { taiKhoan: '', matKhau: '' },
     mode: 'onTouched',
   });
@@ -27,7 +31,11 @@ const Login = (props) => {
         <input
           type="text"
           id="username"
-          {...register('taiKhoan', { required: true, minLength: 5, maxLength: 20 })}
+          {...register('taiKhoan', {
+            required: true,
+            minLength: 5,
+            maxLength: 20,
+          })}
         />
         {errors.taiKhoan && (
           <span className="text-red-500">This field is required!</span>
@@ -38,7 +46,11 @@ const Login = (props) => {
         <input
           type="password"
           id="password"
-          {...register('matKhau', { required: true })}
+          {...register('matKhau', {
+            required: true,
+            minLenght: 8,
+            maxLength: 20,
+          })}
         />
         {errors.matKhau && (
           <span className="text-red-500">This field is required!</span>
