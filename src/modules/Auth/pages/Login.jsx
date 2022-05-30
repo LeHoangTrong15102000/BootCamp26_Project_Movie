@@ -11,7 +11,7 @@ const Login = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValue: { taiKhoan: '', matKhau: '' },
+    defaultValue: { taiKhoan: '', matKhau: '', gmail: '' },
     mode: 'onTouched',
   });
 
@@ -27,11 +27,12 @@ const Login = (props) => {
     // Hàm handleSubmit thì nó sẽ có 2 cái tham số là 2 cái callBack function, CB function thứ nhất là hàm Valid trả về object data trong form của chúng ta, CB function thứ 2 là onInvalid là khi mà submit thì thất bại thì nó bị cái lỗi nào đó liên quan đến validation , thì khi mà thất bại thì nó sẽ nhảy vào cái callBack thứ 2
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label htmlFor="username">Tài khoản</label>
+        <label htmlFor="username">Tài khoản</label>{' '}
         <input
           type="text"
           id="username"
           {...register('taiKhoan', {
+            // required: true;
             required: {
               value: true,
               message: 'Trường này không được để trống!',
@@ -66,6 +67,38 @@ const Login = (props) => {
         />
         {errors.matKhau && (
           <span className="text-red-500">{errors.matKhau.message}</span>
+        )}
+      </div>
+
+      {/* thêm một trường email nữa để kiểm tra regex */}
+      <div>
+        <label htmlFor="email">Email</label>{' '}
+        <input
+          type="email"
+          id="email"
+          {...register('gmail', {
+            required: {
+              value: true,
+              message: 'Trường này không được để trống!',
+            },
+            minLength: {
+              value: 10,
+              message: 'Email phải từ 10 đến 30 kí tự!',
+            },
+            maxLength: {
+              value: 30,
+              message: 'Email phải từ 10 đến 30 kí tự!',
+            },
+            pattern: {
+              value:
+                /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+              message: 'Định dạng email không phù hợp!',
+            },
+          })}
+        />
+        {/* Hiện lỗi Email */}
+        {errors.gmail && (
+          <span className="text-red-500">{errors.gmail.message}</span>
         )}
       </div>
 
