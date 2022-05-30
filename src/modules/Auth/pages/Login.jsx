@@ -61,8 +61,14 @@ const Login = (props) => {
               value: true,
               message: 'Trường này không được để trống!',
             },
-            minLenght: 8,
-            maxLength: 20,
+            minLenght: {
+              value: 8,
+              message: 'Mật khẩu phải từ 5 đến 20 kí tự!'
+            },
+            maxLength: {
+              value: 8,
+              message: 'Mật khẩu phải từ 5 đến 20 kí tự!'
+            },
           })}
         />
         {errors.matKhau && (
