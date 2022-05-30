@@ -66,7 +66,7 @@ const Login = (props) => {
               message: 'Mật khẩu phải từ 5 đến 20 kí tự!'
             },
             maxLength: {
-              value: 8,
+              value: 20,
               message: 'Mật khẩu phải từ 5 đến 20 kí tự!'
             },
           })}
