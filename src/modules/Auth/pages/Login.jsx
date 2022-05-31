@@ -38,6 +38,8 @@ const Login = (props) => {
   } = useForm({
     defaultValue: { taiKhoan: '', matKhau: '', gmail: '' },
     mode: 'onTouched',
+    // Định nghĩa schema cho form
+    resolver: yupResolver(schema)
   });
 
   // Tạo ra cái hàm hứng giá trị mà form trả về (là tham số thứ nhất(callBack Function thứ 1) của hàm handleSubmit trong react-hook-form)
