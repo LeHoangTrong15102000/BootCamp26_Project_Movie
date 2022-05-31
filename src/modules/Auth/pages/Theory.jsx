@@ -22,4 +22,7 @@
  *          - Thì đó là cách sử dụng thứ 1 , nhưng cách thứ 1 gặp vấn đề là ko biết là đang bị lỗi gì để show ra cái message cho nó đúng
  *          - Do đó chúng ta sẽ thực hiện cách thứ 2
  *          - Hướng dẫn thêm 1 cách nữa để validate cho form => đó là schemas validation hỗ trợ tương tác với một số thư viện
- */
+ *
+ *          - Cài đặt thư viện hookform/yup vào và định nghĩa validate schema cho component.
+ *                - Nếu kiểu dữ liệu là string thì chỉ cần chấm min() thì nó sẽ so độ dài
+ *  */

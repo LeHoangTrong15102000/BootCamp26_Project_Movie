@@ -1,6 +1,31 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+// Định nghĩa validate schema cho form
+const schema = yup.object({
+  taiKhoan: yup
+    .string()
+    .required(true, 'Trường này không được để trống!')
+    .min(5, 'Tài khoản phải từ 5 đến 20 kí tự')
+    .max(20, 'Tài khoản phải từ 5 đến 20 kí tự'),
+  matKhau: yup
+    .string()
+    .required(true, 'Trường này không được để trống!')
+    .matches(
+      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+      'Mật khẩu không phù hợp với định dạng!'
+    ),
+  gmail: yup
+    .string()
+    .required(true, 'Trường này không được để trống!')
+    .matches(
+      /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+      'Email không phù hợp với định dạng!'
+    ),
+});
 
 const Login = (props) => {
   // Thì thằng này dựa trên cơ chế của customed và Uncontrolled component(ref) để tạo ra cái hooks tên là useForm
@@ -63,11 +88,11 @@ const Login = (props) => {
             },
             minLenght: {
               value: 8,
-              message: 'Mật khẩu phải từ 5 đến 20 kí tự!'
+              message: 'Mật khẩu phải từ 5 đến 20 kí tự!',
             },
             maxLength: {
               value: 20,
-              message: 'Mật khẩu phải từ 5 đến 20 kí tự!'
+              message: 'Mật khẩu phải từ 5 đến 20 kí tự!',
             },
           })}
         />
