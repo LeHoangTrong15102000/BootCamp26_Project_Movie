@@ -1,29 +1,30 @@
-import React, { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import React, { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 // Định nghĩa validate schema cho form
 const schema = yup.object({
   taiKhoan: yup
     .string()
-    .required(true, 'Trường này không được để trống!')
-    .min(5, 'Tài khoản phải từ 5 đến 20 kí tự')
-    .max(20, 'Tài khoản phải từ 5 đến 20 kí tự'),
+    // Chỉ cần truyền vào cho nó cái nội dung validate không cần giá trị là true
+    .required("Trường này không được để trống!")
+    .min(5, "Tài khoản phải từ 5 đến 20 kí tự")
+    .max(20, "Tài khoản phải từ 5 đến 20 kí tự"),
   matKhau: yup
     .string()
-    .required(true, 'Trường này không được để trống!')
+    .required("Trường này không được để trống!")
     .matches(
       /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-      'Mật khẩu không phù hợp với định dạng!'
+      "Mật khẩu không phù hợp với định dạng!"
     ),
   gmail: yup
     .string()
-    .required(true, 'Trường này không được để trống!')
+    .required("Trường này không được để trống!")
     .matches(
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-      'Email không phù hợp với định dạng!'
+      "Email không phù hợp với định dạng!"
     ),
 });
 
@@ -36,67 +37,73 @@ const Login = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValue: { taiKhoan: '', matKhau: '', gmail: '' },
-    mode: 'onTouched',
+    defaultValue: { taiKhoan: "", matKhau: "", gmail: "" },
+    mode: "onTouched",
     // Định nghĩa schema cho form
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema), // Dùng schema để validate
   });
 
   // Tạo ra cái hàm hứng giá trị mà form trả về (là tham số thứ nhất(callBack Function thứ 1) của hàm handleSubmit trong react-hook-form)
   const onSubmit = (values) => {
-    console.log('values', values);
+    console.log("values", values);
   };
 
-  console.log('Re-render');
+  console.log("Re-render");
 
   return (
     // khi mà chạy cái form thì nó sẽ có một sự kiện là onSubmit và gọi hàm handleSubmit ra
     // Hàm handleSubmit thì nó sẽ có 2 cái tham số là 2 cái callBack function, CB function thứ nhất là hàm Valid trả về object data trong form của chúng ta, CB function thứ 2 là onInvalid là khi mà submit thì thất bại thì nó bị cái lỗi nào đó liên quan đến validation , thì khi mà thất bại thì nó sẽ nhảy vào cái callBack thứ 2
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label htmlFor="username">Tài khoản</label>{' '}
+        <label htmlFor="username">Tài khoản</label>{" "}
         <input
           type="text"
           id="username"
-          {...register('taiKhoan', {
-            // required: true;
-            required: {
-              value: true,
-              message: 'Trường này không được để trống!',
-            },
-            minLength: {
-              value: 5,
-              message: 'Tài khoản phải từ 5 đến 20 kí tự!',
-            },
-            maxLength: {
-              value: 20,
-              message: 'Tài khoản phải từ 5 đến 20 kí tự!',
-            },
-          })}
+          {...register(
+            "taiKhoan"
+            // {
+            //   // required: true;
+            //   required: {
+            //     value: true,
+            //     message: 'Trường này không được để trống!',
+            //   },
+            //   minLength: {
+            //     value: 5,
+            //     message: 'Tài khoản phải từ 5 đến 20 kí tự!',
+            //   },
+            //   maxLength: {
+            //     value: 20,
+            //     message: 'Tài khoản phải từ 5 đến 20 kí tự!',
+            //   },
+            // }
+          )}
         />
         {errors.taiKhoan && (
           <span className="text-red-500">{errors.taiKhoan.message}</span>
         )}
       </div>
       <div>
-        <label htmlFor="password">Mật khẩu</label>{' '}
+        <label htmlFor="password">Mật khẩu</label>{" "}
         <input
           type="password"
           id="password"
-          {...register('matKhau', {
-            required: {
-              value: true,
-              message: 'Trường này không được để trống!',
-            },
-            minLenght: {
-              value: 8,
-              message: 'Mật khẩu phải từ 5 đến 20 kí tự!',
-            },
-            maxLength: {
-              value: 20,
-              message: 'Mật khẩu phải từ 5 đến 20 kí tự!',
-            },
-          })}
+          {...register(
+            "matKhau"
+            // {
+            //   required: {
+            //     value: true,
+            //     message: 'Trường này không được để trống!',
+            //   },
+            //   minLenght: {
+            //     value: 8,
+            //     message: 'Mật khẩu phải từ 5 đến 20 kí tự!',
+            //   },
+            //   maxLength: {
+            //     value: 20,
+            //     message: 'Mật khẩu phải từ 5 đến 20 kí tự!',
+            //   },
+            // }
+          )}
         />
         {errors.matKhau && (
           <span className="text-red-500">{errors.matKhau.message}</span>
@@ -105,29 +112,32 @@ const Login = (props) => {
 
       {/* thêm một trường email nữa để kiểm tra regex */}
       <div>
-        <label htmlFor="email">Email</label>{' '}
+        <label htmlFor="email">Email</label>{" "}
         <input
           type="email"
           id="email"
-          {...register('gmail', {
-            required: {
-              value: true,
-              message: 'Trường này không được để trống!',
-            },
-            minLength: {
-              value: 10,
-              message: 'Email phải từ 10 đến 30 kí tự!',
-            },
-            maxLength: {
-              value: 30,
-              message: 'Email phải từ 10 đến 30 kí tự!',
-            },
-            pattern: {
-              value:
-                /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-              message: 'Định dạng email không phù hợp!',
-            },
-          })}
+          {...register(
+            "gmail"
+            // {
+            //   required: {
+            //     value: true,
+            //     message: 'Trường này không được để trống!',
+            //   },
+            //   minLength: {
+            //     value: 10,
+            //     message: 'Email phải từ 10 đến 30 kí tự!',
+            //   },
+            //   maxLength: {
+            //     value: 30,
+            //     message: 'Email phải từ 10 đến 30 kí tự!',
+            //   },
+            //   pattern: {
+            //     value:
+            //       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+            //     message: 'Định dạng email không phù hợp!',
+            //   },
+            // }
+          )}
         />
         {/* Hiện lỗi Email */}
         {errors.gmail && (

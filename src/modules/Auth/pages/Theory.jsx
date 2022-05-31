@@ -26,4 +26,7 @@
  *          - Cài đặt thư viện hookform/yup vào và định nghĩa validate schema cho component.
  *                - Nếu kiểu dữ liệu là string thì chỉ cần chấm min() thì nó sẽ so độ dài
  *                - Trong useForm có chứa cái key là resolvers
+ * 
+            - Khi mà không có cái resolver thì nó sẽ validate bằng tham số thứ 2 của hàm required
+            - Khi mà đã có schema thì ko cần tham số thứ 2 của hàm required nữa
  *  */
