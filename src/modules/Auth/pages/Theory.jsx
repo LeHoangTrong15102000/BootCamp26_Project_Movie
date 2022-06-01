@@ -24,9 +24,11 @@
  *          - Hướng dẫn thêm 1 cách nữa để validate cho form => đó là schemas validation hỗ trợ tương tác với một số thư viện
  *
  *          - Cài đặt thư viện hookform/yup vào và định nghĩa validate schema cho component.
- *                - Nếu kiểu dữ liệu là string thì chỉ cần chấm min() thì nó sẽ so độ dài
+ *                - Nếu kiểu dữ liệu là string thì chỉ cần chấm min() thì nó sẽ so độ dàis
  *                - Trong useForm có chứa cái key là resolvers
  * 
             - Khi mà không có cái resolver thì nó sẽ validate bằng tham số thứ 2 của hàm required
             - Khi mà đã có schema thì ko cần tham số thứ 2 của hàm required nữa
+
+      - Tiếp theo cũng là một phần khá quan trọng khi sử dụng với react-hook-form, kĩ thuật composition là tạo ra những UI component, để mà khi chỉ gọi cái component đó ra thì ta đã có được nội dung bên trong của component đó(bằng cách truyền thêm props cho nó).   
  *  */
