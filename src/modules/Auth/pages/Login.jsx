@@ -1,31 +1,36 @@
-import React, { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import InputText from 'components/InputText'
+import React, { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import InputText from "components/InputText";
 
 // Định nghĩa validate schema cho form
 const schema = yup.object({
   taiKhoan: yup
     .string()
     // Chỉ cần truyền vào cho nó cái nội dung validate không cần giá trị là true
-    .required('Trường này không được để trống!')
-    .min(5, 'Tài khoản phải từ 5 đến 20 kí tự')
-    .max(20, 'Tài khoản phải từ 5 đến 20 kí tự'),
+    .required("Trường này không được để trống!")
+    .min(5, "Tài khoản phải từ 5 đến 20 kí tự")
+    .max(20, "Tài khoản phải từ 5 đến 20 kí tự"),
   matKhau: yup
     .string()
-    .required('Trường này không được để trống!')
+    .required("Trường này không được để trống!")
     .matches(
       /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-      'Mật khẩu không phù hợp với định dạng!'
+      "Mật khẩu không phù hợp với định dạng!"
     ),
+  firstName: yup
+    .string()
+    .required("Trường này không được để trống!")
+    .min(5, "Tên đầu phải từ 5 đến 20 kí tự!")
+    .max(20, "Tên đầu phải từ 5 đến 20 kí tự!"),
   gmail: yup
     .string()
-    .required('Trường này không được để trống!')
+    .required("Trường này không được để trống!")
     .matches(
       /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-      'Email không phù hợp với định dạng!'
+      "Email không phù hợp với định dạng!"
     ),
 });
 
@@ -38,30 +43,30 @@ const Login = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValue: { taiKhoan: '', matKhau: '', gmail: '' },
-    mode: 'onTouched',
+    defaultValue: { taiKhoan: "", matKhau: "", gmail: "", firstName: "" },
+    mode: "onTouched",
     // Định nghĩa schema cho form
     resolver: yupResolver(schema), // Dùng schema để validate
   });
 
   // Tạo ra cái hàm hứng giá trị mà form trả về (là tham số thứ nhất(callBack Function thứ 1) của hàm handleSubmit trong react-hook-form)
   const onSubmit = (values) => {
-    console.log('values', values);
+    console.log("values", values);
   };
 
-  console.log('Re-render');
+  console.log("Re-render");
 
   return (
     // khi mà chạy cái form thì nó sẽ có một sự kiện là onSubmit và gọi hàm handleSubmit ra
     // Hàm handleSubmit thì nó sẽ có 2 cái tham số là 2 cái callBack function, CB function thứ nhất là hàm Valid trả về object data trong form của chúng ta, CB function thứ 2 là onInvalid là khi mà submit thì thất bại thì nó bị cái lỗi nào đó liên quan đến validation , thì khi mà thất bại thì nó sẽ nhảy vào cái callBack thứ 2
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label htmlFor="username">Tài khoản</label>{' '}
+        <label htmlFor="username">Tài khoản</label>{" "}
         <input
           type="text"
           id="username"
           {...register(
-            'taiKhoan'
+            "taiKhoan"
             // {
             //   // required: true;
             //   required: {
@@ -84,12 +89,12 @@ const Login = (props) => {
         )}
       </div>
       <div>
-        <label htmlFor="password">Mật khẩu</label>{' '}
+        <label htmlFor="password">Mật khẩu</label>{" "}
         <input
           type="password"
           id="password"
           {...register(
-            'matKhau'
+            "matKhau"
             // {
             //   required: {
             //     value: true,
@@ -111,14 +116,18 @@ const Login = (props) => {
         )}
       </div>
 
+      {/* Thử InputText với firstName */}
+      {/* Thì mình tạo một component là inputText chứa những css chung cho cái layout của form thì để tương tác nó với react-hook-form thì cần truyền cho nó hàm là register */}
+      <InputText  label="First Name" type="text" name="firstName" errors={errors.firstName} register={register}/>
+
       {/* thêm một trường email nữa để kiểm tra regex */}
       <div>
-        <label htmlFor="email">Email</label>{' '}
+        <label htmlFor="email">Email</label>{" "}
         <input
           type="email"
           id="email"
           {...register(
-            'gmail'
+            "gmail"
             // {
             //   required: {
             //     value: true,

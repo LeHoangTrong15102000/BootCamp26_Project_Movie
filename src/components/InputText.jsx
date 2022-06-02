@@ -7,7 +7,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  display: block;
+  display: inline-block;
   width: 100%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -24,12 +24,14 @@ const Input = styled.input`
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
 
-const InputText = ({ label, name, register, errors, ...props }) => {
+// Thì đây là component do mình tạo ra để chứa được đóng giao diện của mình 
+const InputText = ({ label, name, register, errors, className, ...props }) => {
   return (
-    <div>
+    <div className="flex">
       <Label htmlFor={name}>{label}</Label>
       <Input id={name} {...props} {...register(name)} />
-      {errors && <span>{errors.message}</span>}
+      {/* Bên kia nếu errors.firstName là true thì nó sẽ hiện thị lỗi */}
+      {errors && <span className="text-red-500">{errors.message}</span>}
     </div>
   );
 };
