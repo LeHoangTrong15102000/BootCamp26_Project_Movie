@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import InputText from 'components/InputText'
 
 // Định nghĩa validate schema cho form
 const schema = yup.object({

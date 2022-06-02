@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
 const Label = styled.label`
   margin-bottom: 0.5rem;
@@ -24,12 +24,14 @@ const Input = styled.input`
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
 
-const InputText = ({label, name , register, errors, ...props}) => {
-  return <div>
-    <Label htmlFor={name}>{label}</Label>
-    <Input id={name} {...props} {...register(name)} />
-    {errors && <span>{errors.message}</span>}
-  </div>;
+const InputText = ({ label, name, register, errors, ...props }) => {
+  return (
+    <div>
+      <Label htmlFor={name}>{label}</Label>
+      <Input id={name} {...props} {...register(name)} />
+      {errors && <span>{errors.message}</span>}
+    </div>
+  );
 };
 
 export default InputText;
