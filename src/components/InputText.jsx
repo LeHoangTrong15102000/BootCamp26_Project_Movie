@@ -24,7 +24,7 @@ const Input = styled.input`
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 `;
 
-// Thì đây là component do mình tạo ra để chứa được đóng giao diện của mình 
+// Thì đây là component do mình tạo ra để chứa được đóng giao diện của mình
 const InputText = ({ label, name, register, errors, className, ...props }) => {
   return (
     <div className="flex">
