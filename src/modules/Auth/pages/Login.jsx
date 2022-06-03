@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import InputText from 'components/InputText';
 
-// Định nghĩa validate schema cho form
+// Định nghĩa validate schema cho form sa
 const schema = yup.object({
   taiKhoan: yup
     .string()
@@ -25,6 +25,11 @@ const schema = yup.object({
     .required('Trường này không được để trống!')
     .min(5, 'Tên đầu phải từ 5 đến 20 kí tự!')
     .max(20, 'Tên đầu phải từ 5 đến 20 kí tự!'),
+  lastName: yup
+    .string()
+    .required('Trường này không được để trống!')
+    .min(3, 'Tên cuối phải từ 3 đến 7 kí tự!')
+    .max(7, 'Tên cuối phải từ 3 đến 7 kí tự!'),
   gmail: yup
     .string()
     .required('Trường này không được để trống!')
@@ -43,7 +48,13 @@ const Login = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValue: { taiKhoan: '', matKhau: '', gmail: '', firstName: '' },
+    defaultValue: {
+      taiKhoan: '',
+      matKhau: '',
+      gmail: '',
+      firstName: '',
+      lastName: '',
+    },
     mode: 'onTouched',
     // Định nghĩa schema cho form
     resolver: yupResolver(schema), // Dùng schema để validate
