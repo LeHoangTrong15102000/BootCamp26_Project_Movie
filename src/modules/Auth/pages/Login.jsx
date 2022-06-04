@@ -143,7 +143,7 @@ const Login = (props) => {
         register={register}
         validations={{
           required: {value: true, 'Trường này không được để trống!'},
-          minLength: {value: 5, ''}
+          minLength: {value: 5, 'Độ dài của tài khoản yêu cầu phải từ 5 đến 20 kí tự'}
         }}
       /> */}
 

@@ -33,4 +33,8 @@
       - Tiếp theo cũng là một phần khá quan trọng khi sử dụng với react-hook-form, kĩ thuật composition là tạo ra những UI component, để mà khi chỉ gọi cái component đó ra thì ta đã có được nội dung bên trong của component đó(bằng cách truyền thêm props cho nó).   
       - Muốn validations cho hàm inputText custom thì chỉ cần truyền vào ở tham số thứ 2 của register
       - Call APi cho phần Authentication
+
+
+      - Tuy nhiên có một trường hợp đặc biệt khác nữa, chính là khi mà chúng ta sử dụng những lib component ui bên ngoài không phải component do chúng ta tạo ra , thì cái component bên ngoài nó không có hỗ trợ cái props là register
+      - Thì thằng hook form nó mới tạo ra cho chúng ta thêm một cách nữa để tương tác với thư viện bên ngoài
  *  */
