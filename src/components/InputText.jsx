@@ -25,11 +25,11 @@ const Input = styled.input`
 `;
 
 // Thì đây là component do mình tạo ra để chứa được đóng giao diện của mình
-const InputText = ({ label, name, register, errors, className, ...props }) => {
+const InputText = ({ label, name, register, errors, className, validations, ...props }) => {
   return (
     <div className="flex">
       <Label htmlFor={name}>{label}</Label>
-      <Input id={name} {...props} {...register(name)} />
+      <Input id={name} {...props} {...register(name, validations)} />
       {/* Bên kia nếu errors.firstName là true thì nó sẽ hiện thị lỗi */}
       {errors && <span className="text-red-500">{errors.message}</span>}
     </div>

@@ -141,6 +141,10 @@ const Login = (props) => {
         name="firstName"
         errors={errors.firstName}
         register={register}
+        validations={{
+          required: {value: true, 'Trường này không được để trống!'},
+          minLength: {value: 5, ''}
+        }}
       /> */}
 
       {/* InputText cho lastName */}
@@ -151,6 +155,18 @@ const Login = (props) => {
         errors={errors.lastName}
         register={register}
       /> */}
+
+      <div>
+        <label htmlFor="firstName">First Name</label>
+        <input type="text" id="firstName" {...register("firstName")} />
+        {errors.firstName && <span className="text-red-500">{errors.firstName.message}</span>}
+      </div>
+
+      <div>
+        <label htmlFor="lastName">Last Name</label>
+        <input type="text" id="lastName" {...register("lastName")} /> 
+        {errors.lastName && <span className="text-red-500">{errors.lastName.message}</span>}
+      </div>
 
       {/* InputText cho age */}
       <div>
