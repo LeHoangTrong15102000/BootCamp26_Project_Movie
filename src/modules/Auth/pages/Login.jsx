@@ -158,14 +158,18 @@ const Login = (props) => {
 
       <div>
         <label htmlFor="firstName">First Name</label>
-        <input type="text" id="firstName" {...register("firstName")} />
-        {errors.firstName && <span className="text-red-500">{errors.firstName.message}</span>}
+        <input type="text" id="firstName" {...register('firstName')} />
+        {errors.firstName && (
+          <span className="text-red-500">{errors.firstName.message}</span>
+        )}
       </div>
 
       <div>
         <label htmlFor="lastName">Last Name</label>
-        <input type="text" id="lastName" {...register("lastName")} /> 
-        {errors.lastName && <span className="text-red-500">{errors.lastName.message}</span>}
+        <input type="text" id="lastName" {...register('lastName')} />
+        {errors.lastName && (
+          <span className="text-red-500">{errors.lastName.message}</span>
+        )}
       </div>
 
       {/* InputText cho age */}
