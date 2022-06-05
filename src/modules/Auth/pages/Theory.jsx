@@ -37,4 +37,8 @@
 
       - Tuy nhiên có một trường hợp đặc biệt khác nữa, chính là khi mà chúng ta sử dụng những lib component ui bên ngoài không phải component do chúng ta tạo ra , thì cái component bên ngoài nó không có hỗ trợ cái props là register
       - Thì thằng hook form nó mới tạo ra cho chúng ta thêm một cách nữa để tương tác với thư viện bên ngoài, sử dụng thư viện bên ngoài để biết hook form tương tác với thư viện bên ngoài như thế nào
+      - Tương tác trực tiếp giữa Library UI với react hook form, thì chúng ta sẽ sử dụng nó thông qua thằng Controller component
+      - Thì Controller đầu tiền cần cho nó một cái name, thì ở trong useForm gọi thêm một cái function nữa là control, thằng register dùng cho những thẻ input bình thường, còn khi dùng UI component thì mình sử dụng hàm control
+      - Props thứ 3 của thz Controller là render() nó nhận vào 1 callBack function và nó return về Component Input mà mình muốn sử dụng, thì ở trong cái callBack nó sẽ cung cấp 2 cái params là field và formState,
+            - Field nó cung cấp cho chúng ta những thứ như là value ô Input, hàm onChange , onBlur của ô Input 
  *  */

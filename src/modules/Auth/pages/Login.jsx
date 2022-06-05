@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import InputText from 'components/InputText';
+// import InputText from 'components/InputText';
+// TextInput từ mantine
+import { TextInput } from '@mantine/core';
 
 // Định nghĩa validate schema cho form sa
 const schema = yup.object({
@@ -50,6 +52,7 @@ const Login = (props) => {
   // handleSubmit sẽ xử lý việc thành công hay thất bại để gọi tới callBack tương ứng
   const {
     register,
+    control, // Sử dụng kèm với component Controller để tương tác với UI Component
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -133,6 +136,8 @@ const Login = (props) => {
         )}
       </div>
 
+
+      {/* Component tự tạo */}
       {/* Thử InputText với firstName */}
       {/* Thì mình tạo một component là inputText chứa những css chung cho cái layout của form thì để tương tác nó với react-hook-form thì cần truyền cho nó hàm là register */}
       {/* <InputText
@@ -147,6 +152,7 @@ const Login = (props) => {
         }}
       /> */}
 
+      {/* Component tự tạo */}
       {/* InputText cho lastName */}
       {/* <InputText
         label="Last Name"
@@ -156,7 +162,7 @@ const Login = (props) => {
         register={register}
       /> */}
 
-      <div>
+      {/* <div>
         <label htmlFor="firstName">First Name</label>
         <input type="text" id="firstName" {...register('firstName')} />
         {errors.firstName && (
@@ -170,7 +176,16 @@ const Login = (props) => {
         {errors.lastName && (
           <span className="text-red-500">{errors.lastName.message}</span>
         )}
-      </div>
+      </div> */}
+
+
+      {/* Sử dụng thư viện UI component để tương tác với react-hook-form */}
+      <Controller
+        name="firstName"
+        control={control}
+        render={({field, formState}) => <TextInput />}
+       />
+      <TextInput register={register} />
 
       {/* InputText cho age */}
       <div>
