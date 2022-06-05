@@ -185,7 +185,16 @@ const Login = (props) => {
         control={control}
         render={({field, formState}) => <TextInput />}
        />
-      <TextInput register={register} />
+      {/* <TextInput register={register} /> */}
+
+      {/* Sử dụng thư viện UI Component để tương tác với form */}
+      {/* Sử dụng với lastName */}
+      <Controller
+         name="lastName"
+         control={control}
+        render={({field, formState}) => <TextInput />}
+       />
+      {/* <TextInput /> */}
 
       {/* InputText cho age */}
       <div>

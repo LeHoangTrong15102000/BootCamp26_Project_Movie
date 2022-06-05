@@ -41,4 +41,7 @@
       - Thì Controller đầu tiền cần cho nó một cái name, thì ở trong useForm gọi thêm một cái function nữa là control, thằng register dùng cho những thẻ input bình thường, còn khi dùng UI component thì mình sử dụng hàm control
       - Props thứ 3 của thz Controller là render() nó nhận vào 1 callBack function và nó return về Component Input mà mình muốn sử dụng, thì ở trong cái callBack nó sẽ cung cấp 2 cái params là field và formState,
             - Field nó cung cấp cho chúng ta những thứ như là value ô Input, hàm onChange , onBlur của ô Input 
+            - Field và formState chỉ chứa duy nhất cho một mình thằng thuộc tính chưa nó mà thôi => thì mình cần nên xem cái component đó sử dụng như thế nào để mình đưa vào sử dụng
+            - TextInput của thằng mantine có thể truyền vào các giá trị như là value, hàm onChange, hàm onBlur, thì những hàm noChange, onBlur, value nó đã nằm trong object field
+            - Thì nó hiển thị errors như thế nào khi mà UI component "TextInput" nó có một props là errors
  *  */
