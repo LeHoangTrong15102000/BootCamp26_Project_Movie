@@ -45,4 +45,8 @@
             - TextInput của thằng mantine có thể truyền vào các giá trị như là value, hàm onChange, hàm onBlur, thì những hàm noChange, onBlur, value nó đã nằm trong object field
             - Thì nó hiển thị errors như thế nào khi mà UI component "TextInput" nó có một props là errors thì mình sẽ sử dụng fieldState có sẵn trong react hook form để hiển thị lỗi của các ô input trong mantine UI,(thì những message lỗi phải được khai báo ở trong schema) 
             - Ngoai ra no con co trang thai la fieldState la trang thai cua cia truong do thoi
+
+
+
+      - Tiếp tục với thằng login thì chúng ta sẽ đi viết APi để login cho nó
  *  */

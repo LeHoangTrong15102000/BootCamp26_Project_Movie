@@ -64,6 +64,7 @@ const Login = (props) => {
         control={control}
         render={({ field, fieldState }) => (
           <TextInput
+            type="password"
             placeholder="mật khẩu của bạn"
             label="Mật Khẩu"
             {...field}
