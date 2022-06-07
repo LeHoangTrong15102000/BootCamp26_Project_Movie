@@ -16,10 +16,21 @@ export const userLogin = createAsyncThunk(
   // cái params đầu tiền là giá trị mà user truyền vào, thứ 2 là thunk APi mình ko cần xài thì bỏ qua
   async (values) => {
     // values là những giá trị {'taiKhoan', 'matKhau'} khi mà người dùng đăng nhập vào
-    const data = await authAPI.login(values);
-    return data;
+    const data = await authAPI.login(values);// biến data ở đây chính là phthuc payload
+
+    // Tại vì return không thì nó đã trả về cái payload, nên mới return về object có chứa data(nên bóc tách phần tử data trong payload và return về luôn)
+    return { data };
   }
 );
+
+// Viết hàm xử lý đăng ký cho người dùng
+export const userRegister = createAsyncThunk(
+  'auth/register',
+  async (values) => {
+    const data = await authAPI.register(values)
+    return { data }
+  }
+)
 
 // Viết hàm để xử lý dữ liệu
 export const authSlices = createSlice({
@@ -31,11 +42,12 @@ export const authSlices = createSlice({
     [userLogin.pending]: (state, action) => {
       return { ...state, isLoading: true, error: null };
     },
-    [userLogin.fulfilled]: (state, action) => {
-      return { ...state, isLoading: false, data: action.payload.data };
+    [userLogin.fulfilled]: (state, {payload}) => {
+      // isLoggedIn là true khi mà loggin thành công thì là  true
+      return { ...state, isLoading: false, user: payload.data, isLoggedIn: true };
     },
-    [userLogin.error]: (state, action) => {
-      return { ...state, isLoading: false, error: action.error.message };
+    [userLogin.rejected]: (state, {error}) => {
+      return { ...state, isLoading: false, error: error.message };
     },
   },
 });
