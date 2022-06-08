@@ -49,4 +49,10 @@
 
 
       - Tiếp tục với thằng login thì chúng ta sẽ đi viết APi để login cho nó
+
+            - Sau khi mà dispatch action login thành công thì mình sẽ làm gì
+            - useNavigate dùng cho các function , dùng gọi hàm để điều hướng
+            - Còn thz Link khác Navigate (Navigate là xử lý logic thành công thì nó điều hướng, Link click vào thì nó mới điều hướng,) để replace là true để xóa đi lịch sử của trang login trước đó, để khi mà người dùng có back về thì cũng về trang trước trang login trước đó
+            - {/*  sẽ cho disabled cái button này đi để tránh trường hợp người dùng nhấn vào liên tục khi mà mạng chập chờn tránh trường hợp nó request về server liên tục làm chậm quá trình load /}
+            - Khi mà người dùng đăng nhập vào rồi thì phải lưu tài khoản, mật khẩu người dùng vào localStorage để tránh trường hợp người dùng out ra rồi phải bắt đăng nhập lần nữa
  *  */

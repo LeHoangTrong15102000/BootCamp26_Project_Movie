@@ -2,6 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as authAPI from 'apis/authAPI';
 
+// Lấy từ localStorage cái user của người dùng đã đăng nhập vào
+
 const initialState = {
   user: null, // ban đầu chưa có nên là null
   isLoggedIn: false, // đã đăng nhập vào hay chưa
@@ -42,6 +44,7 @@ export const loginSlices = createSlice({
         isLoggedIn: true,
       };
     },
+    // Trong error có cái key là message
     [userLogin.rejected]: (state, { error }) => {
       return { ...state, isLoading: false, error: error.message };
     },
