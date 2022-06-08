@@ -55,4 +55,15 @@
             - Còn thz Link khác Navigate (Navigate là xử lý logic thành công thì nó điều hướng, Link click vào thì nó mới điều hướng,) để replace là true để xóa đi lịch sử của trang login trước đó, để khi mà người dùng có back về thì cũng về trang trước trang login trước đó
             - {/*  sẽ cho disabled cái button này đi để tránh trường hợp người dùng nhấn vào liên tục khi mà mạng chập chờn tránh trường hợp nó request về server liên tục làm chậm quá trình load /}
             - Khi mà người dùng đăng nhập vào rồi thì phải lưu tài khoản, mật khẩu người dùng vào localStorage để tránh trường hợp người dùng out ra rồi phải bắt đăng nhập lần nữa
+            - Trong routes nếu mà có thằng con thì dùng params là children, trường hợp mà muốn để nó khớp với path cha Movies không thôi thì để index là true
+            - routes nó có một cái hook giúp chúng ta định nghĩa link liên kết cho trang là useRoutes
+            
+
+            - 
+            - Ngoài những chức năng dùng cho form thì react hook form còn có những chức năng nâng cao khác nữa(thằng error nên có optioanl changing cho nó để khi mà nó null thì nó trả ra undefined luôn)
+
+
+
+
+      - Bài tiếp theo sẽ học về cách user private (giành cho admin của trang web)
  *  */
