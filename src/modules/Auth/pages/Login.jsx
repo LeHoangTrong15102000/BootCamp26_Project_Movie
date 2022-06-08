@@ -4,21 +4,18 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { TextInput } from '@mantine/core';
+import { userLogin } from '../slices/LoginSlices';
 
 const schema = yup.object({
-  taiKhoan: yup
-    .string()
-    .required('Trường này không được để trống!')
-    .min(5, 'Tài khoản phải từ 5 đến 20 kí tự!')
-    .max(20, 'Tài khoản phải từ 5 đến 20 kí tự!'),
-  matKhau: yup
-    .string()
-    .required('Trường này không được để trống!')
-    .max(20, 'Mật khẩu phải từ 5 đến 20 kí tự')
-    .matches(
-      /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-      'Mật khẩu không phù hợp định dạng!'
-    ),
+  taiKhoan: yup.string().required('Trường này không được để trống!'),
+  // .min(5, 'Tài khoản phải từ 5 đến 20 kí tự!')
+  // .max(20, 'Tài khoản phải từ 5 đến 20 kí tự!'),
+  matKhau: yup.string().required('Trường này không được để trống!'),
+  // .max(20, 'Mật khẩu phải từ 5 đến 20 kí tự')
+  // .matches(
+  //   /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+  //   'Mật khẩu không phù hợp định dạng!'
+  // ),
 });
 
 const Login = (props) => {
@@ -36,12 +33,25 @@ const Login = (props) => {
     resolver: yupResolver(schema),
   });
 
+  const dispatch = useDispatch();
+  const { isLoggedIn, isLoading, error, user } = useSelector(
+    (state) => state.authLogin
+  );
+
   const onSubmit = (values) => {
     console.log('values', values);
+    // Khi nhấn vào onSubmit thì dispatch cái action là login
+    dispatch(userLogin(values)); // Truyền giá trị value là taiKhoan , matKhau cua người dùng vào
+  };
+
+  // Ngoài hàm onSubmit thì còn có hàm là onError
+  const onError = (errors) => {
+    // Ngoài việc display ra lỗi mà còn muốn xử lý thêm gì thì cứ viết vào đây là được
+    console.log('errors', errors);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit, onError)}>
       {/* Sử dụng Controller để kết nói với các thư viện UI component bên ngoài */}
 
       {/* Tài Khoản */}
