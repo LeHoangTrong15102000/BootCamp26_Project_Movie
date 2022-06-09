@@ -19,6 +19,7 @@ export const userLogin = createAsyncThunk(
   async (values) => {
     // values là những giá trị {'taiKhoan', 'matKhau'} khi mà người dùng đăng nhập vào
     const data = await authAPI.login(values); // biến data ở đây chính là phthuc payload
+    // Đăng nhập thành công => Lưu thông tin user vào localStorage
 
     // Tại vì return không thì nó đã trả về cái payload, nên mới return về object có chứa data(nên bóc tách phần tử data trong payload và return về luôn)
     return { data };
