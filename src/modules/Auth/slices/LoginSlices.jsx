@@ -5,6 +5,7 @@ import * as authAPI from 'apis/authAPI';
 // Lấy từ localStorage cái user của người dùng đã đăng nhập vào
 
 const initialState = {
+  // ta sẽ truyền động giá trị của user luôn, nếu đã có KH đăng nhập vào thì user sẽ lấy từ local, nếu không có thì se là null
   user: null, // ban đầu chưa có nên là null
   isLoggedIn: false, // đã đăng nhập vào hay chưa
   isLoading: false,
@@ -19,7 +20,9 @@ export const userLogin = createAsyncThunk(
   async (values) => {
     // values là những giá trị {'taiKhoan', 'matKhau'} khi mà người dùng đăng nhập vào
     const data = await authAPI.login(values); // biến data ở đây chính là phthuc payload
+    // Nếu muốn user không cần đăng nhập lại khi refresh hoặc close browser
     // Đăng nhập thành công => Lưu thông tin user vào localStorage
+    localStorage.setItem('user', JSON.stringify(data))
 
     // Tại vì return không thì nó đã trả về cái payload, nên mới return về object có chứa data(nên bóc tách phần tử data trong payload và return về luôn)
     return { data };
