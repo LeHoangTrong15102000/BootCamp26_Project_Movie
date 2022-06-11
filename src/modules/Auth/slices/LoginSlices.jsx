@@ -22,7 +22,7 @@ export const userLogin = createAsyncThunk(
     const data = await authAPI.login(values); // biến data ở đây chính là phthuc payload
     // Nếu muốn user không cần đăng nhập lại khi refresh hoặc close browser
     // Đăng nhập thành công => Lưu thông tin user vào localStorage
-    localStorage.setItem('user', JSON.stringify(data))
+    localStorage.setItem('user', JSON.stringify(data));
 
     // Tại vì return không thì nó đã trả về cái payload, nên mới return về object có chứa data(nên bóc tách phần tử data trong payload và return về luôn)
     return { data };
