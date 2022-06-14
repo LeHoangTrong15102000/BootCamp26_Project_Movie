@@ -2,7 +2,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as authAPI from 'apis/authAPI';
 
-// Lấy từ localStorage cái user của người dùng đã đăng nhập vào
+// Lấy từ localStorage cái user của người dùng đã đăng nhập vào, có thể viết gộp lại cũng được
+// const user = localStorage.getItem('user')
+//   ? JSON.parse(localStorage.getItem('user'))
+//   : null;
+
+const user = JSON.parse(localStorage.getItem('user')) || null;
 
 const initialState = {
   // ta sẽ truyền động giá trị của user luôn, nếu đã có KH đăng nhập vào thì user sẽ lấy từ local, nếu không có thì se là null
