@@ -13,7 +13,7 @@ const initialState = {
   // ta sẽ truyền động giá trị của user luôn, nếu đã có KH đăng nhập vào thì user sẽ lấy từ local, nếu không có thì se là null
   user, // ban đầu chưa có nên là null
   // isLoggedIn: !!user, // đã đăng nhập vào hay chưa, "!!" nghĩa là phủ định của phủ định có nghĩa là ban đầu chưa có thì biến isLoggedIn là false, khi mà có người dùng đăng nhập vào rồi thì là true
-  isLoggedIn: Boolean(user),// cũng có thể viết lại như sau, - dùng để xác định user đã đăng nhập hay chưa
+  isLoggedIn: Boolean(user),// cũng có thể viết lại như sau, - dùng để xác định user đã đăng nhập hay chưa(Boolean của một object có dữ liệu bên trong là true)
   isLoading: false,
   error: null,
 };
