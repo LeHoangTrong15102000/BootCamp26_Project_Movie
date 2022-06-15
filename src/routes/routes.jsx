@@ -9,7 +9,7 @@ const RegisterPage = lazy(() => import('modules/Auth/pages/Register'));
 const MovieShowing = lazy(() => import('modules/Movies/pages/MovieShowing'));
 const MovieComming = lazy(() => import('modules/Movies/pages/MovieComming'));
 const MovieDetails = lazy(() => import('modules/Movies/pages/MovieDetails'));
-const Booking = lazy(() => import('modules/Checkout/pages/Booking'));
+const CheckoutPage = lazy(() => import('modules/Checkout/pages/Booking'));
 const DemoUseCallback = lazy(() => import('_playground/Hook/DemoUseCallback'));
 const DemoUseMemos = lazy(() => import('_playground/Hook/DemoUseMemo'));
 const DemoUseReducer = lazy(() => import('_playground/Hook/DemoUseReducer'));
@@ -27,6 +27,10 @@ const routes = [
   {
     path: '/register',
     element: <RegisterPage />,
+  },
+  {
+    path: 'booking/:ticketId',
+    element: <CheckoutPage />
   },
   {
     path: '*',
