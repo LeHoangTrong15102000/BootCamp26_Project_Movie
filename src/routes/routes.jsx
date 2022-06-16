@@ -3,6 +3,7 @@ import { lazy } from 'react';
 // tạo ra một cái array để quản lí các cái routes của dự án
 // const lazzy = dir => lazy(() => import(dir))
 import NotFound from 'components/NotFound';
+import UserProtect from './UserProtect';
 const HomePage = lazy(() => import('modules/Home/pages/HomePage')); // Mới đầu vào chạy homePage thì chỉ có mỗi file js của homepage là chạy thôi
 const LoginPage = lazy(() => import('modules/Auth/pages/Login')); // Các cái page thì thường sẽ sử dụng kĩ thuật lazy load để tối ưu tốc độ tải trang
 const RegisterPage = lazy(() => import('modules/Auth/pages/Register'));
@@ -30,7 +31,12 @@ const routes = [
   },
   {
     path: 'booking/:ticketId',
-    element: <CheckoutPage />
+    element: (
+      <UserProtect>
+        {/* children */}
+        <CheckoutPage />
+      </UserProtect>
+    ),
   },
   {
     path: '*',
