@@ -35,7 +35,7 @@ export const userLogin = createAsyncThunk(
   }
 );
 
-// Viết hàm để xử lý dữ liệu
+// Viết hàm để xử lý dữ liệu, sau khi call APi xong thì reducer sẽ xử lý
 export const loginSlices = createSlice({
   name: "authLogin", // name dùng để khai báo trong store reducer tổng
   initialState,
