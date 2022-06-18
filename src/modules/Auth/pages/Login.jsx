@@ -2,7 +2,12 @@ import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Navigate, useNavigate, useRoutes, useSearchParams} from 'react-router-dom'
+import {
+  Navigate,
+  useNavigate,
+  useRoutes,
+  useSearchParams,
+} from 'react-router-dom';
 import * as yup from 'yup';
 import { TextInput } from '@mantine/core';
 import { userLogin } from '../slices/LoginSlices';
@@ -40,7 +45,7 @@ const Login = (props) => {
   );
 
   // useSearchParams trả về 2 phần tử(trong mảng), chỉ cần lấy thz đầu tiên là được
-  const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
 
   const onSubmit = (values) => {
     console.log('values', values);
@@ -53,12 +58,12 @@ const Login = (props) => {
     // Ngoài việc display ra lỗi mà còn muốn xử lý thêm gì thì cứ viết vào đây là được
     console.log('errors', errors);
   };
-  
+
   if (isLoggedIn) {
     // Nếu isLoggedIn là true thì redirect user về page home (hoặc một page nào trước đó mà ta đã đi vào trước khi đi vào login)
     // Nếu trên url có search params là successUrl thì sẽ Navigate về page đó
     // Nếu ko có thì navigate về trang homepage
-    return <Navigate to="/" replace={true} />
+    return <Navigate to="/" replace={true} />;
   }
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
@@ -95,11 +100,17 @@ const Login = (props) => {
       />
 
       {/* hiển thị ra lỗi tổng ở phía server đưa ra trong quá trình đăng ký bị trùng tài khoản */}
-      {error && <div><span>{error}</span></div>}
-      
-      <button disabled={isLoading} className="bg-cyan-500 text-white p-2 ml-10">Đăng nhập</button>
+      {error && (
+        <div>
+          <span>{error}</span>
+        </div>
+      )}
+
+      <button disabled={isLoading} className="bg-cyan-500 text-white p-2 ml-10">
+        Đăng nhập
+      </button>
     </form>
   );
 };
-  
+
 export default Login;
