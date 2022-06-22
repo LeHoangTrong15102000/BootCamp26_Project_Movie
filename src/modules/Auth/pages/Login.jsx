@@ -63,7 +63,7 @@ const Login = (props) => {
     // Nếu isLoggedIn là true thì redirect user về page home (hoặc một page nào trước đó mà ta đã đi vào trước khi đi vào login)
     // Nếu trên url có search params là successUrl thì sẽ Navigate về page đó
     // Nếu ko có thì navigate về trang homepage
-    console.log(searchParams.get("successUrl"))
+    console.log(searchParams.get("successUrl")); // lấy ra cái params phía sua cái search url
     const url = searchParams.get('successUrl') || '/';// nếu không có thì trả về đường link trang chủ 
   
     return <Navigate to={url} replace={true} />;
