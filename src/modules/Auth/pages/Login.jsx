@@ -45,7 +45,7 @@ const Login = (props) => {
   );
 
   // useSearchParams trả về 2 phần tử(trong mảng), chỉ cần lấy thz đầu tiên là được
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();// Lấy giá trị từ sau dấu ? trở đi
 
   const onSubmit = (values) => {
     console.log('values', values);
@@ -63,7 +63,10 @@ const Login = (props) => {
     // Nếu isLoggedIn là true thì redirect user về page home (hoặc một page nào trước đó mà ta đã đi vào trước khi đi vào login)
     // Nếu trên url có search params là successUrl thì sẽ Navigate về page đó
     // Nếu ko có thì navigate về trang homepage
-    return <Navigate to="/" replace={true} />;
+    console.log(searchParams.get("successUrl"))
+    const url = searchParams.get('successUrl') || '/';// nếu không có thì trả về đường link trang chủ 
+  
+    return <Navigate to={url} replace={true} />;
   }
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
