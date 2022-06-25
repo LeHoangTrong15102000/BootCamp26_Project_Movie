@@ -15,7 +15,18 @@ const DemoUseCallback = lazy(() => import('_playground/Hook/DemoUseCallback'));
 const DemoUseMemos = lazy(() => import('_playground/Hook/DemoUseMemo'));
 const DemoUseReducer = lazy(() => import('_playground/Hook/DemoUseReducer'));
 
+const AdminMovieList = lazy(() =>
+  import('modules/MovieManagement/pages/MovieList')
+);
+const AdminAddMovie = lazy(() =>
+  import('modules/MovieManagement/pages/AddMovie')
+);
+const AdminUpdateMovie = lazy(() =>
+  import('modules/MovieManagement/pages/UpdateMovie')
+);
+
 const routes = [
+  // User route
   {
     path: '/',
     // nó bắt cái type của element phải là JSX nên import trực tiếp vào thì nó không cho
@@ -39,10 +50,6 @@ const routes = [
     ),
   },
   {
-    path: '*',
-    element: <NotFound />,
-  },
-  {
     path: '/movies',
     children: [
       {
@@ -58,6 +65,20 @@ const routes = [
         element: <MovieDetails />,
       },
     ],
+  },
+
+  // Admin routes
+  {
+    path: '/admin',
+    children: [
+      {
+        path: 'movies',
+      },
+    ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ];
 
