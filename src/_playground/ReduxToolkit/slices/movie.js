@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getMovieShowing } from "apis/movieAPI";
+import { getMoviesShowing } from "apis/movieAPI";
 
 const initialState = {
   data: [],
@@ -19,7 +19,7 @@ export const getShowing = createAsyncThunk(
   //   }
   // }
   async () => {
-    const data = await getMovieShowing();
+    const data = await getMoviesShowing();
     return { data };
   }
 );

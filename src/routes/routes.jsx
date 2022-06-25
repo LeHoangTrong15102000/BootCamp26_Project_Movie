@@ -4,6 +4,7 @@ import { lazy } from 'react';
 // const lazzy = dir => lazy(() => import(dir))
 import NotFound from 'components/NotFound';
 import UserProtect from './UserProtect';
+import movie from '_playground/ReduxToolkit/slices/movie';
 const HomePage = lazy(() => import('modules/Home/pages/HomePage')); // Mới đầu vào chạy homePage thì chỉ có mỗi file js của homepage là chạy thôi
 const LoginPage = lazy(() => import('modules/Auth/pages/Login')); // Các cái page thì thường sẽ sử dụng kĩ thuật lazy load để tối ưu tốc độ tải trang
 const RegisterPage = lazy(() => import('modules/Auth/pages/Register'));
@@ -15,13 +16,14 @@ const DemoUseCallback = lazy(() => import('_playground/Hook/DemoUseCallback'));
 const DemoUseMemos = lazy(() => import('_playground/Hook/DemoUseMemo'));
 const DemoUseReducer = lazy(() => import('_playground/Hook/DemoUseReducer'));
 
-const AdminMovieList = lazy(() =>
+// Admin Managemnet
+const MovieList = lazy(() =>
   import('modules/MovieManagement/pages/MovieList')
 );
-const AdminAddMovie = lazy(() =>
+const AddMovie = lazy(() =>
   import('modules/MovieManagement/pages/AddMovie')
 );
-const AdminUpdateMovie = lazy(() =>
+const UpdateMovie = lazy(() =>
   import('modules/MovieManagement/pages/UpdateMovie')
 );
 
@@ -73,7 +75,16 @@ const routes = [
     children: [
       {
         path: 'movies',
+        element: <MovieList />
       },
+      {
+        path: 'movies/add',
+        element: <AddMovie />
+      },
+      {
+        path: 'movies/update',
+        element: <UpdateMovie />
+      }
     ],
   },
   {
