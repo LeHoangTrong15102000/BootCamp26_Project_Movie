@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, Navigate, useLocation } from 'react-router-dom';
+import {  Navigate, useLocation } from 'react-router-dom';
 
 const UserProtect = ({ children }) => {
   const { user, isLoggedIn } = useSelector((state) => state.authLogin);
