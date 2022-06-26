@@ -17,12 +17,8 @@ const DemoUseMemos = lazy(() => import('_playground/Hook/DemoUseMemo'));
 const DemoUseReducer = lazy(() => import('_playground/Hook/DemoUseReducer'));
 
 // Admin Managemnet
-const MovieList = lazy(() =>
-  import('modules/MovieManagement/pages/MovieList')
-);
-const AddMovie = lazy(() =>
-  import('modules/MovieManagement/pages/AddMovie')
-);
+const MovieList = lazy(() => import('modules/MovieManagement/pages/MovieList'));
+const AddMovie = lazy(() => import('modules/MovieManagement/pages/AddMovie'));
 const UpdateMovie = lazy(() =>
   import('modules/MovieManagement/pages/UpdateMovie')
 );
@@ -75,16 +71,16 @@ const routes = [
     children: [
       {
         path: 'movies',
-        element: <MovieList />
+        element: <MovieList />,
       },
       {
         path: 'movies/add',
-        element: <AddMovie />
+        element: <AddMovie />,
       },
       {
-        path: 'movies/update',
-        element: <UpdateMovie />
-      }
+        path: 'movies/update/:movieId',
+        element: <UpdateMovie />,
+      },
     ],
   },
   {
