@@ -25,7 +25,7 @@ const axiosClient = axios.create({
 
 // interceptor -> kết nối với API rồi trả về giao diện
 // Cấu hình cho nó
-// Trước khi gửi về cho nơi gọi axios thì nó sẽ đi vào interceptor, còn bây giờ sẽ có thêm 1 quá trình nữa
+// Trước khi gửi về cho nơi gọi axios thì nó sẽ đi vào interceptor, còn bây giờ sẽ có thêm 1 quá trình nữa đó là quá trình modified request(thay đổi: thêm , xóa , ... )
 axiosClient.interceptors.response.use(
   // kêt quả khi mà server trả về thì nó sẽ đi qua thầng interceptor này trước khi trả ra cho nơi gọi axios
   // ta có thể thay đổi data sau đó trả về cho nơi gọi axios
