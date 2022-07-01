@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "query-string";
+import store from '../store'
 
 // setup những cấu hình mặc định cho axios
 const axiosClient = axios.create({
@@ -23,15 +24,32 @@ const axiosClient = axios.create({
   },
 });
 
+// request mình sẽ để ở trên, còn response sẽ để ở bên dưới
+axiosClient.interceptors.request.use((request) => {
+  // Do something before request is sent
+  // Kiểm tra trước khi request được sent
+  // Dùng getState() để lấy reducer từ store
+  const { authLogin } = store.getState();
+  
+  return 
+}, (error) => {
+    return Promise.reject(error.response.data.content)
+})
+
+
+
 // interceptor -> kết nối với API rồi trả về giao diện
 // Cấu hình cho nó
-// Trước khi gửi về cho nơi gọi axios thì nó sẽ đi vào interceptor, còn bây giờ sẽ có thêm 1 quá trình nữa đó là quá trình modified request(thay đổi: thêm , xóa , ... )
+// Trước khi gửi về cho nơi gọi axios thì nó sẽ đi vào interceptor, còn bây giờ sẽ có thêm 1 quá trình nữa đó là quá trình modified request(thay đổi: thêm , xóa , ... ) -> thì trong đây là nơi mình sẽ ép thêm cái token(đăng nhập) vào
 axiosClient.interceptors.response.use(
   // kêt quả khi mà server trả về thì nó sẽ đi qua thầng interceptor này trước khi trả ra cho nơi gọi axios
   // ta có thể thay đổi data sau đó trả về cho nơi gọi axios
   (response) => {
     // response.data là format của axios, sau đó
     // Những gì ta return trong đây chỉnh là kết quả trả về của axios khi gọi API
+
+
+  
     return response.data.content; // Chỉ cần trả về response nếu đã trả về response.data.content thì bên gọi data không cần phải bốc tách nữa
     /**
      * Nhũng gì mà mình return ở đây sẽ là kết quả trả về cho nơi gọi axios
