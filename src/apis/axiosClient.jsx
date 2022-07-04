@@ -1,13 +1,13 @@
-import axios from "axios";
-import qs from "query-string";
-import store from '../store'
+import axios from 'axios';
+import qs from 'query-string';
+import store from '../store';
 
 // setup những cấu hình mặc định cho axios
 const axiosClient = axios.create({
-  baseURL: "https://movienew.cybersoft.edu.vn/api/",
+  baseURL: 'https://movienew.cybersoft.edu.vn/api/',
   headers: {
     TokenCybersoft:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAyNiIsIkhldEhhblN0cmluZyI6IjEzLzEwLzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY2NTYxOTIwMDAwMCIsIm5iZiI6MTYzMzE5NDAwMCwiZXhwIjoxNjY1NzY2ODAwfQ.TMg-RWGpT6_kH-eG3Pbw5j_8yWUP84LrkWZAFj-Drfk",
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAyNiIsIkhldEhhblN0cmluZyI6IjEzLzEwLzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY2NTYxOTIwMDAwMCIsIm5iZiI6MTYzMzE5NDAwMCwiZXhwIjoxNjY1NzY2ODAwfQ.TMg-RWGpT6_kH-eG3Pbw5j_8yWUP84LrkWZAFj-Drfk',
   },
 
   // override lại cách axios set params lên URL
@@ -25,18 +25,19 @@ const axiosClient = axios.create({
 });
 
 // request mình sẽ để ở trên, còn response sẽ để ở bên dưới
-axiosClient.interceptors.request.use((request) => {
-  // Do something before request is sent
-  // Kiểm tra trước khi request được sent
-  // Dùng getState() để lấy reducer từ store
-  const { authLogin } = store.getState();
-  
-  return 
-}, (error) => {
-    return Promise.reject(error.response.data.content)
-})
+axiosClient.interceptors.request.use(
+  (request) => {
+    // Do something before request is sent
+    // Kiểm tra trước khi request được sent
+    // Dùng getState() để lấy reducer từ store
+    const { authLogin } = store.getState();
 
-
+    return;
+  },
+  (error) => {
+    return Promise.reject(error.response.data.content);
+  }
+);
 
 // interceptor -> kết nối với API rồi trả về giao diện
 // Cấu hình cho nó
@@ -48,8 +49,6 @@ axiosClient.interceptors.response.use(
     // response.data là format của axios, sau đó
     // Những gì ta return trong đây chỉnh là kết quả trả về của axios khi gọi API
 
-
-  
     return response.data.content; // Chỉ cần trả về response nếu đã trả về response.data.content thì bên gọi data không cần phải bốc tách nữa
     /**
      * Nhũng gì mà mình return ở đây sẽ là kết quả trả về cho nơi gọi axios

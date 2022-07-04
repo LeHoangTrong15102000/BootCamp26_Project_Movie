@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getShowing } from '../slices/movieSlice';
 import { useNavigate } from 'react-router-dom';
 // import homeMovie from '../reducers/movieReducers'
+// import thư viện mantine vào
 
 const MovieShowing = () => {
   const navigate = useNavigate(); // khởi tạo biến navigate
