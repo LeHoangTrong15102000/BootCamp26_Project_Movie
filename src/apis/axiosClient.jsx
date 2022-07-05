@@ -8,7 +8,6 @@ const axiosClient = axios.create({
   headers: {
     TokenCybersoft:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAyNiIsIkhldEhhblN0cmluZyI6IjEzLzEwLzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY2NTYxOTIwMDAwMCIsIm5iZiI6MTYzMzE5NDAwMCwiZXhwIjoxNjY1NzY2ODAwfQ.TMg-RWGpT6_kH-eG3Pbw5j_8yWUP84LrkWZAFj-Drfk',
-
   },
 
   // override lại cách axios set params lên URL
@@ -33,7 +32,11 @@ axiosClient.interceptors.request.use(
     // Dùng getState() để lấy thẳng reducer từ store
     const { authLogin } = store.getState();
 
-    return request;
+    if (authLogin) {
+      return request;
+    }
+
+    // return request;
   },
   (error) => {
     return Promise.reject(error.response.data.content);
