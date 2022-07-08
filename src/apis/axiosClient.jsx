@@ -1,6 +1,7 @@
 import axios from 'axios';
 import qs from 'query-string';
 import store from '../store';
+import { useSelector, useDispatch } from "react-redux"
 
 // setup những cấu hình mặc định cho axios
 const axiosClient = axios.create({
@@ -30,13 +31,16 @@ axiosClient.interceptors.request.use(
     // Do something before request is sent
     // Kiểm tra trước khi request được sent
     // Dùng getState() để lấy thẳng reducer từ store
-    const { authLogin } = store.getState();
 
-    if (authLogin) {
-      return request;
+    // Kiểm tra nếu user đã đăng nhập => lấy accessToken truyền vào headers, bởi vì đây là thành phần động phụ thuộc vào việc user đã đăng nhập hay chưa(thì nó sẽ được thêm hoặc không thêm)
+    const { authLogin } = store.getState();
+    const { accessToken } = authLogin?.user || {}; // Nếu mà user null không có thì nó sẽ trả về object rỗng để key accessToken ra là undefined
+
+    if (accessToken) {
+      request.headers.Authorization = `Bearer ${accessToken}`;
     }
 
-    // return request;
+    return request;
   },
   (error) => {
     return Promise.reject(error.response.data.content);
