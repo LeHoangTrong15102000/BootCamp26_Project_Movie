@@ -37,7 +37,8 @@ axiosClient.interceptors.request.use(
     const { accessToken } = authLogin?.user || {}; // Nếu mà user null không có thì nó sẽ trả về object rỗng để key accessToken ra là undefined
 
     if (accessToken) {
-      request.headers.Authorization = `Bearer ${accessToken}`;
+      // Tất cả các project đều tuân theo cái key Authorization, còn key TokenCyberSoft là do trung tâm đưa vào cho học viên
+      request.headers.Authorization = `Bearer ${accessToken}`;// bên ngoài người ta dùng key này làm chuẩn chung bảo mật api của họ
     }
 
     return request;
