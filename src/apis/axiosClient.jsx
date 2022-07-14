@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'query-string';
 import store from '../store';
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from 'react-redux';
 
 // setup những cấu hình mặc định cho axios
 const axiosClient = axios.create({
@@ -38,7 +38,7 @@ axiosClient.interceptors.request.use(
 
     if (accessToken) {
       // Tất cả các project đều tuân theo cái key Authorization, còn key TokenCyberSoft là do trung tâm đưa vào cho học viên
-      request.headers.Authorization = `Bearer ${accessToken}`;// bên ngoài người ta dùng key này làm chuẩn chung bảo mật api của họ
+      request.headers.Authorization = `Bearer ${accessToken}`; // bên ngoài người ta dùng key này làm chuẩn chung bảo mật api của họ
     }
 
     return request;
