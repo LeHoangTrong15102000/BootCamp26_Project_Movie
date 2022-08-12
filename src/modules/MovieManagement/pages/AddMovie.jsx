@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 const AddMovie = () => {
   // register là những giá trị mặc định mà mình đã set trong hook form(default value)
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       tenPhim: "",
       biDanh: "",
@@ -22,8 +22,22 @@ const AddMovie = () => {
     console.log("values", values);
   };
 
+  // Xử lý thuộc tính image khi mà thư viện không hỗ trợ lấy ra giá trị fileList của form
+  const handleChangeImage = (event) => {
+    // một số thư viện không hõ trợ thì nó sẽ lấy ra event.target.value
+    console.log("value",event.target.value);// lấy ra cái đường dẫn url chứa file ảnh trong máy tính
 
-  const handleChangeImage = () => {}
+    // Như vậy phải chuyển nó về file chuỗi sau đó đưa vào server và lấy ra lại định dạng jpg
+    console.log("value", event.target.files);// Thông thường người ta sẽ lấy ra cái fileList này
+    // Đối với những lib ko hỗ trợ để lấy ra cái fileList thì nó sẽ hỡ trợ function thay đổi thủ công cái data
+    setValue("hinhAnh", event.target.files)
+
+    // Nếu không sử dụng React Hook form mà sử dụng useState bình thường thì mình phải set lại Form cho thuộc tính hình ảnh
+    // setForm(prevState =>  ({...prevState, hinhAnh: event.target.files}))
+
+  }
+
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -59,6 +73,7 @@ const AddMovie = () => {
       <div>
         <label htmlFor="image">Image</label>
         {/* <input type="file" id="image" {...register("hinhAnh")} /> */}
+        {/* Cái input của file có thể chó phép người dùng upLoad multiple file => <input type multiple id /> */}
         <input type="file" id="image" onChange={handleChangeImage} />
       </div>
 
